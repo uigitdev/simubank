@@ -7,6 +7,7 @@ class AppSizes {
 
   double get paddingPageBottom => 25;
   double get paddingHorizontal => 15;
+  double get paddingVertical => 5;
 
   double get label => 13;
 }
