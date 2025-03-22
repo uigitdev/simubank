@@ -6,7 +6,7 @@ class AppThemes {
   AppThemes(this.context);
 
   ThemeData get light => ThemeData.light().copyWith(
-    primaryColor: Colors.blue,
+    primaryColor: Color(0xFF2563EB),
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: AppBarTheme(
       color: Colors.grey[200],
@@ -19,7 +19,13 @@ class AppThemes {
         color: const Color(0xFF95989B),
         fontSize: AppSizes(context).label,
       ),
+      titleMedium: TextStyle(
+        fontSize: AppSizes(context).buttonTitle,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
     ),
+    disabledColor: Color(0xFFD1D5DB),
     iconButtonTheme: IconButtonThemeData(
       style: ButtonStyle(
         iconColor: WidgetStateProperty.all<Color>(Colors.black),
@@ -31,7 +37,7 @@ class AppThemes {
   );
 
   ThemeData get dark => ThemeData.dark().copyWith(
-    primaryColor: Colors.black,
+    primaryColor: Color(0xFF2563EB),
     scaffoldBackgroundColor: Colors.black,
     appBarTheme: AppBarTheme(
       color: Colors.grey[900],
@@ -44,7 +50,13 @@ class AppThemes {
         color: const Color(0xFF95989B),
         fontSize: AppSizes(context).label,
       ),
+      titleMedium: TextStyle(
+        fontSize: AppSizes(context).buttonTitle,
+        fontWeight: FontWeight.bold,
+        color: Colors.black,
+      ),
     ),
+    disabledColor: Color(0xFF727477),
     iconButtonTheme: IconButtonThemeData(
       style: ButtonStyle(
         iconColor: WidgetStateProperty.all<Color>(Colors.grey),

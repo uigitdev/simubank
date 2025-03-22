@@ -1,3 +1,4 @@
+import 'package:simubank/features/auth/presentation/widgets/auth_button.dart';
 import 'package:simubank/simubank.dart';
 
 class AuthPage extends StatelessWidget {
@@ -13,15 +14,33 @@ class AuthPage extends StatelessWidget {
         children: [
           Expanded(
             child: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(
+                horizontal: AppSizes(context).paddingAuthHorizontal,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('logo'),
                   Text('field1'),
                   Text('field2'),
-                  Text('button'),
+                  Semantics(
+                    label: AppStrings.authLogin,
+                    child: AuthButton(
+                      key: Key('login'),
+                      title: AppStrings.authLogin.toUpperCase(),
+                      onTap: () {},
+                    ),
+                  ),
                   Text('account creation'),
-                  Text('register'),
+                  Semantics(
+                    label: AppStrings.authRegistration,
+                    child: AuthButton(
+                      key: Key('registration'),
+                      isEnabled: false,
+                      title: AppStrings.authRegistration.toUpperCase(),
+                      onTap: () {},
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -34,7 +53,7 @@ class AuthPage extends StatelessWidget {
                 right: AppSizes(context).paddingHorizontal,
                 bottom: AppSizes(context).paddingPageBottom,
               ),
-              child: VersionTitleWidget(),
+              child: AuthVersionTitleWidget(),
             ),
           ),
         ],
