@@ -29,3 +29,9 @@ export 'package:simubank/features/auth/presentation/widgets/auth_version_title_w
 export 'package:package_info_plus/package_info_plus.dart';
 export 'package:simubank/features/auth/presentation/widgets/auth_button.dart';
 export 'package:simubank/features/auth/presentation/widgets/auth_logo.dart';
+export 'package:simubank/common/uikit/inputfield/uikit_input_field.dart';
+export 'package:flutter_svg/flutter_svg.dart';
+export 'package:simubank/common/widgets/app_input_field.dart';
+export 'package:simubank/core/res/icon/app_icons.dart';
+export 'package:flutter/services.dart';
+export 'package:simubank/common/uikit/inputfield/uikit_input_field_tools.dart';
