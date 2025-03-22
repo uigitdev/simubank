@@ -2,6 +2,7 @@ class AppStrings{
   AppStrings._();
 
   static final String appName = 'SimuBank';
+  static final String appNameLabel = 'Digital Banking';
   static final String pageNotFound = 'This page is not found';
 
   static final String versionTitle = '© {year} {name} - Ver. {version}';

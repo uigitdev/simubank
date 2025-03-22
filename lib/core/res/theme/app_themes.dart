@@ -20,9 +20,23 @@ class AppThemes {
         fontSize: AppSizes(context).label,
       ),
       titleMedium: TextStyle(
-        fontSize: AppSizes(context).buttonTitle,
+        fontSize: AppSizes(context).titleMedium,
         fontWeight: FontWeight.bold,
         color: Colors.white,
+      ),
+      bodyMedium: TextStyle(
+        fontSize: AppSizes(context).titleMedium,
+        color: Color(0xFF95989B),
+      ),
+      headlineLarge: TextStyle(
+        fontSize: AppSizes(context).titleLarge,
+        fontWeight: FontWeight.w600,
+        color: Color(0xFF2D2A2A),
+      ),
+      bodyLarge: TextStyle(
+        fontSize: AppSizes(context).titleLarge,
+        fontWeight: FontWeight.bold,
+        color: Color(0xFF2563EB),
       ),
     ),
     disabledColor: Color(0xFFD1D5DB),
@@ -51,9 +65,23 @@ class AppThemes {
         fontSize: AppSizes(context).label,
       ),
       titleMedium: TextStyle(
-        fontSize: AppSizes(context).buttonTitle,
+        fontSize: AppSizes(context).titleMedium,
         fontWeight: FontWeight.bold,
         color: Colors.black,
+      ),
+      bodyMedium: TextStyle(
+        fontSize: AppSizes(context).titleMedium,
+        color: Color(0xFF95989B),
+      ),
+      headlineLarge: TextStyle(
+        fontSize: AppSizes(context).titleLarge,
+        fontWeight: FontWeight.w600,
+        color: Colors.grey[400],
+      ),
+      bodyLarge: TextStyle(
+        fontSize: AppSizes(context).titleLarge,
+        fontWeight: FontWeight.bold,
+        color: Color(0xFF2563EB),
       ),
     ),
     disabledColor: Color(0xFF727477),

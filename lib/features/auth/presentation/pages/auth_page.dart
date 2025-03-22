@@ -1,4 +1,3 @@
-import 'package:simubank/features/auth/presentation/widgets/auth_button.dart';
 import 'package:simubank/simubank.dart';
 
 class AuthPage extends StatelessWidget {
@@ -20,7 +19,26 @@ class AuthPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('logo'),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: AppSizes(context).paddingVertical,
+                    ),
+                    child: AuthLogo(),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      bottom: AppSizes(context).paddingVertical,
+                    ),
+                    child: Semantics(
+                      label: AppStrings.authLogin,
+                      child: Text(
+                        AppStrings.authLogin,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ),
+                  ),
                   Text('field1'),
                   Text('field2'),
                   Semantics(
@@ -31,14 +49,35 @@ class AuthPage extends StatelessWidget {
                       onTap: () {},
                     ),
                   ),
-                  Text('account creation'),
-                  Semantics(
-                    label: AppStrings.authRegistration,
-                    child: AuthButton(
-                      key: Key('registration'),
-                      isEnabled: false,
-                      title: AppStrings.authRegistration.toUpperCase(),
-                      onTap: () {},
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: AppSizes(context).paddingVertical,
+                    ),
+                    child: Semantics(
+                      label: AppStrings.noAccountYet,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          AppStrings.noAccountYet,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: AppSizes(context).paddingVertical,
+                    ),
+                    child: Semantics(
+                      label: AppStrings.authRegistration,
+                      child: AuthButton(
+                        key: Key('registration'),
+                        isEnabled: false,
+                        title: AppStrings.authRegistration.toUpperCase(),
+                        onTap: () {},
+                      ),
                     ),
                   ),
                 ],

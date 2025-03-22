@@ -25,5 +25,7 @@ export 'package:simubank/common/widgets/app_empty_app_bar.dart';
 export 'package:simubank/features/auth/presentation/pages/auth_page.dart';
 export 'package:simubank/features/home/presentation/pages/home_page.dart';
 export 'package:simubank/common/utils/extensions.dart';
-export 'package:simubank/features/auth/presentation/widgets/version_title_widget.dart';
+export 'package:simubank/features/auth/presentation/widgets/auth_version_title_widget.dart';
 export 'package:package_info_plus/package_info_plus.dart';
+export 'package:simubank/features/auth/presentation/widgets/auth_button.dart';
+export 'package:simubank/features/auth/presentation/widgets/auth_logo.dart';
