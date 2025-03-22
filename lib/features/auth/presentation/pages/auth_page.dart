@@ -1,7 +1,23 @@
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:simubank/simubank.dart';
 
-class AuthPage extends StatelessWidget {
+class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
+
+  @override
+  State<AuthPage> createState() => _AuthPageState();
+}
+
+class _AuthPageState extends State<AuthPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,37 +62,41 @@ class AuthPage extends StatelessWidget {
                           padding: EdgeInsets.only(
                             bottom: AppSizes(context).paddingVertical,
                           ),
-                          child: AppInputField(
-                            key: key,
-                            controller: TextEditingController(),
-                            //TODO add controller
-                            hint: AppStrings.authEmailHint,
-                            action: TextInputAction.next,
-                            inputFieldType: UIKitInputFieldType.EMAIL,
-                            capitalization: TextCapitalization.none,
-                            isAutofocus: true,
-                            isEnabled: true,
+                          child: Semantics(
+                            label: AppStrings.authEmailHint,
+                            child: AppInputField(
+                              key: Key(AppStrings.authEmailHint),
+                              controller: emailController,
+                              hint: AppStrings.authEmailHint,
+                              action: TextInputAction.next,
+                              inputFieldType: UIKitInputFieldType.EMAIL,
+                              capitalization: TextCapitalization.none,
+                              isAutofocus: true,
+                              isEnabled: true,
+                            ),
                           ),
                         ),
                         Padding(
                           padding: EdgeInsets.only(
                             bottom: AppSizes(context).paddingVertical,
                           ),
-                          child: AppInputField(
-                            key: key,
-                            controller: TextEditingController(),
-                            //TODO add controller
-                            hint: AppStrings.authPasswordHint,
-                            action: TextInputAction.next,
-                            inputFieldType: UIKitInputFieldType.PASSWORD,
-                            capitalization: TextCapitalization.none,
-                            isAutofocus: true,
-                            isEnabled: true,
-                            iconAsset: AppIcon.password,
-                            showPasswordIconAsset: AppIcon.showPassword,
-                            onSubmitted: (text) {
-                              //TODO
-                            },
+                          child: Semantics(
+                            label: AppStrings.authPasswordHint,
+                            child: AppInputField(
+                              key: Key(AppStrings.authPasswordHint),
+                              controller: passwordController,
+                              hint: AppStrings.authPasswordHint,
+                              action: TextInputAction.next,
+                              inputFieldType: UIKitInputFieldType.PASSWORD,
+                              capitalization: TextCapitalization.none,
+                              isAutofocus: true,
+                              isEnabled: true,
+                              iconAsset: AppIcon.password,
+                              showPasswordIconAsset: AppIcon.showPassword,
+                              onSubmitted: (text) {
+                                //TODO
+                              },
+                            ),
                           ),
                         ),
                       ],
@@ -130,16 +150,24 @@ class AuthPage extends StatelessWidget {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: AppSizes(context).paddingHorizontal,
-                right: AppSizes(context).paddingHorizontal,
-                bottom: AppSizes(context).paddingPageBottom,
-              ),
-              child: AuthVersionTitleWidget(),
-            ),
+          KeyboardVisibilityBuilder(
+            builder: (context, isVisible) {
+              return Visibility(
+                visible: !isVisible,
+                replacement: const SizedBox(),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: AppSizes(context).paddingHorizontal,
+                      right: AppSizes(context).paddingHorizontal,
+                      bottom: AppSizes(context).paddingPageBottom,
+                    ),
+                    child: AuthVersionTitleWidget(),
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),
