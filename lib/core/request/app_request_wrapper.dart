@@ -33,11 +33,20 @@ class AppRequestWrapper<T> extends HTTPRequestHolder<T> {
   Map<String, dynamic> get queryParams => _request.queryParams;
 
   @override
-  Map<String, dynamic> get headers => _request.headers;
+  Map<String, dynamic> get headers => _mergedHeaders();
 
   @override
   HTTPRequestHolderSettings get settings => _request.settings;
 
   @override
   HTTPRequestHolderDummyResponse? get dummyResponse => _request.dummyResponse;
+
+  /// Merge request header with [sessionState]
+  ///
+  /// Add [sessionState], [sessionId] to every request.
+  Map<String, dynamic> _mergedHeaders() {
+    final headers = _request.headers;
+    headers.putIfAbsent('sessionId', () => sessionState.sessionId);
+    return headers;
+  }
 }
