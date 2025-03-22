@@ -14,6 +14,12 @@ class AppThemes {
       elevation: 2,
       shadowColor: Colors.black.withValues(alpha: 0.5),
     ),
+    textTheme: TextTheme(
+      labelMedium: TextStyle(
+        color: const Color(0xFF95989B),
+        fontSize: AppSizes(context).label,
+      ),
+    ),
     iconButtonTheme: IconButtonThemeData(
       style: ButtonStyle(
         iconColor: WidgetStateProperty.all<Color>(Colors.black),
@@ -32,6 +38,12 @@ class AppThemes {
       surfaceTintColor: Colors.grey[900],
       elevation: 2,
       shadowColor: Colors.grey.withValues(alpha: 0.2),
+    ),
+    textTheme: TextTheme(
+      labelMedium: TextStyle(
+        color: const Color(0xFF95989B),
+        fontSize: AppSizes(context).label,
+      ),
     ),
     iconButtonTheme: IconButtonThemeData(
       style: ButtonStyle(

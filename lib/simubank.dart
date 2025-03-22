@@ -10,7 +10,6 @@ export 'package:simubank/core/providers/app_providers.dart';
 export 'package:simubank/core/routes/route_names.dart';
 export 'package:simubank/core/res/sizes/app_sizes.dart';
 export 'package:shared_preferences/shared_preferences.dart';
-export 'package:simubank/core/res/textstyles/app_text_styles.dart';
 export 'package:simubank/app.dart';
 export 'package:uigitdev_request_holder/uigitdev_request_holder.dart';
 export 'package:simubank/features/initialize/presentation/pages/initialize_page.dart';
@@ -25,3 +24,6 @@ export 'package:simubank/features/initialize/presentation/bloc/initialize_bloc.d
 export 'package:simubank/common/widgets/app_empty_app_bar.dart';
 export 'package:simubank/features/auth/presentation/pages/auth_page.dart';
 export 'package:simubank/features/home/presentation/pages/home_page.dart';
+export 'package:simubank/common/utils/extensions.dart';
+export 'package:simubank/features/auth/presentation/widgets/version_title_widget.dart';
+export 'package:package_info_plus/package_info_plus.dart';
