@@ -19,6 +19,10 @@ class AppThemes {
         color: const Color(0xFF95989B),
         fontSize: AppSizes(context).label,
       ),
+      displayMedium: TextStyle(
+        fontSize: AppSizes(context).titleMedium,
+        color: Color(0xFF2563EB),
+      ),
       titleMedium: TextStyle(
         fontSize: AppSizes(context).titleMedium,
         fontWeight: FontWeight.bold,
@@ -48,6 +52,15 @@ class AppThemes {
         ),
       ),
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      fillColor: Color(0xFFF3F4F6),
+      border: OutlineInputBorder(
+        borderSide: BorderSide(
+          width: AppSizes(context).inputBorderWeight,
+          color: Color(0xFF7088A8),
+        ),
+      ),
+    ),
   );
 
   ThemeData get dark => ThemeData.dark().copyWith(
@@ -68,6 +81,10 @@ class AppThemes {
         fontSize: AppSizes(context).titleMedium,
         fontWeight: FontWeight.bold,
         color: Colors.black,
+      ),
+      displayMedium: TextStyle(
+        fontSize: AppSizes(context).titleMedium,
+        color: Color(0xFF2563EB),
       ),
       bodyMedium: TextStyle(
         fontSize: AppSizes(context).titleMedium,
@@ -90,6 +107,15 @@ class AppThemes {
         iconColor: WidgetStateProperty.all<Color>(Colors.grey),
         overlayColor: WidgetStateProperty.all<Color>(
           Colors.grey.withValues(alpha: 0.2),
+        ),
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      fillColor: Color(0xFF151515),
+      border: OutlineInputBorder(
+        borderSide: BorderSide(
+          width: AppSizes(context).inputBorderWeight,
+          color: Color(0xFF7088A8),
         ),
       ),
     ),

@@ -19,5 +19,13 @@ class AppSizes {
   double get titleMedium => 17;
   double get titleLarge => 30;
 
+  double get inputRadius => 8;
+  double get inputHeight => 40;
+  double get inputBorderWeight => 1;
+  double get inputDecorationHorizontal => 10;
+  double get inputDecorationInternalIconLeft => 5;
+  double get inputDecorationInternalIconRight => 15;
+  double get inputIconSize => 22;
+
   double get appLogoSize => 70;
 }

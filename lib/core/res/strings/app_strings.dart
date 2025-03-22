@@ -9,5 +9,7 @@ class AppStrings{
 
   static final String authLogin = 'Login';
   static final String authRegistration = 'Registration';
-  static final String noAccountYet = 'No account yet? Create now!';
+  static final String authNoAccount = 'No account yet? Create now!';
+  static final String authEmailHint = 'Email';
+  static final String authPasswordHint = 'Password';
 }
