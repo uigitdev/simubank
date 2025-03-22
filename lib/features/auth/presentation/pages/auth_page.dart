@@ -39,14 +39,60 @@ class AuthPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Text('field1'),
-                  Text('field2'),
-                  Semantics(
-                    label: AppStrings.authLogin,
-                    child: AuthButton(
-                      key: Key('login'),
-                      title: AppStrings.authLogin.toUpperCase(),
-                      onTap: () {},
+                  FocusTraversalGroup(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                            bottom: AppSizes(context).paddingVertical,
+                          ),
+                          child: AppInputField(
+                            key: key,
+                            controller: TextEditingController(),
+                            //TODO add controller
+                            hint: AppStrings.authEmailHint,
+                            action: TextInputAction.next,
+                            inputFieldType: UIKitInputFieldType.EMAIL,
+                            capitalization: TextCapitalization.none,
+                            isAutofocus: true,
+                            isEnabled: true,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            bottom: AppSizes(context).paddingVertical,
+                          ),
+                          child: AppInputField(
+                            key: key,
+                            controller: TextEditingController(),
+                            //TODO add controller
+                            hint: AppStrings.authPasswordHint,
+                            action: TextInputAction.next,
+                            inputFieldType: UIKitInputFieldType.PASSWORD,
+                            capitalization: TextCapitalization.none,
+                            isAutofocus: true,
+                            isEnabled: true,
+                            iconAsset: AppIcon.password,
+                            showPasswordIconAsset: AppIcon.showPassword,
+                            onSubmitted: (text) {
+                              //TODO
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: AppSizes(context).paddingVertical,
+                    ),
+                    child: Semantics(
+                      label: AppStrings.authLogin,
+                      child: AuthButton(
+                        key: Key('login'),
+                        title: AppStrings.authLogin.toUpperCase(),
+                        onTap: () {},
+                      ),
                     ),
                   ),
                   Padding(
@@ -54,11 +100,11 @@ class AuthPage extends StatelessWidget {
                       vertical: AppSizes(context).paddingVertical,
                     ),
                     child: Semantics(
-                      label: AppStrings.noAccountYet,
+                      label: AppStrings.authNoAccount,
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                          AppStrings.noAccountYet,
+                          AppStrings.authNoAccount,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.bodyMedium,
