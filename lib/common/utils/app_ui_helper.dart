@@ -6,9 +6,11 @@ mixin AppUIHelper {
       SnackBar(
         content: Text(
           message,
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
+          style: TextStyle(
+            color: Theme.of(context).textTheme.titleMedium?.color,
+            fontWeight: FontWeight.normal,
+            fontSize: AppSizes(context).titleMedium,
+          ),
         ),
         backgroundColor: Theme.of(context).colorScheme.error,
         action: SnackBarAction(

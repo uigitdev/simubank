@@ -17,6 +17,7 @@ class AppSizes {
   double get buttonCircularIndicatorStroke => 3;
 
   double get label => 13;
+  double get titleNormal => 15;
   double get titleMedium => 17;
   double get titleLarge => 30;
   double get titleLarge2 => 25;
