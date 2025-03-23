@@ -7,6 +7,7 @@ class ApiConfig {
 
   static Map<Type, bool> get _requestStatuses => {
     GetObfuscationKeyRequest: true,
+    PostAuthLoginRequest: true,
   };
 
   static bool requestStatus(Type type) => _requestStatuses[type] ?? false;

@@ -55,3 +55,6 @@ export 'package:simubank/request/get_obfuscation_key_request.dart';
 export 'package:simubank/core/config/api_config.dart';
 export 'package:uuid/uuid.dart';
 export 'package:simubank/core/request/app_request_wrapper.dart';
+export 'package:simubank/features/auth/domain/entities/session_entity.dart';
+export 'package:simubank/features/auth/data/model/session_model.dart';
+export 'package:simubank/request/post_auth_login_request.dart';
