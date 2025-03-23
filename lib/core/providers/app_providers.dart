@@ -28,6 +28,12 @@ class AppProviders {
     RouteName.initialize => [],
     RouteName.unknown => [],
     RouteName.home => [],
-    RouteName.auth => [],
+    RouteName.auth => [
+      BlocProvider<AuthBloc>(
+        create: (context) {
+          return AuthBloc();
+        },
+      ),
+    ],
   };
 }

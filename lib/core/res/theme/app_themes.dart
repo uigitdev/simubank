@@ -61,6 +61,8 @@ class AppThemes {
         ),
       ),
     ),
+    snackBarTheme: SnackBarThemeData(elevation: 0),
+    colorScheme: ColorScheme.of(context).copyWith(error: Color(0xFFDC2626)),
   );
 
   ThemeData get dark => ThemeData.dark().copyWith(
@@ -119,5 +121,7 @@ class AppThemes {
         ),
       ),
     ),
+    snackBarTheme: SnackBarThemeData(elevation: 0),
+    colorScheme: ColorScheme.of(context).copyWith(error: Color(0xFFDC2626)),
   );
 }

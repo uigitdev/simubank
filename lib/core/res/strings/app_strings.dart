@@ -13,4 +13,6 @@ class AppStrings{
   static final String authEmailHint = 'Email';
   static final String authPasswordHint = 'Password';
   static final String showPassword = 'Show password';
+
+  static final String snackBarOk = 'OK';
 }
