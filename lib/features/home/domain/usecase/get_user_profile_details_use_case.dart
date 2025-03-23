@@ -1,23 +1,23 @@
 import 'package:simubank/simubank.dart';
 
 class GetUserProfileDetailsUseCase
-    extends AppUseCase<UserProfileDetailsEntity?, NoData> {
+    extends AppStreamUseCase<UserProfileDetailsEntity?, NoData> {
   final UserRepository _repository;
 
   GetUserProfileDetailsUseCase(this._repository);
 
   @override
-  Future<UserProfileDetailsEntity?> call(NoData params) async {
+  Stream<UserProfileDetailsEntity?> call(NoData params) async* {
     try {
       final userProfileDetailsList = await _repository.getUserProfileDetails();
 
-      if (userProfileDetailsList == null || userProfileDetailsList.isEmpty) {
-        return Future.error(ErrorHint(AppStrings.profileNotFound));
+      if (userProfileDetailsList != null && userProfileDetailsList.isNotEmpty) {
+        yield userProfileDetailsList.first;
+      } else {
+        yield null;
       }
-
-      return userProfileDetailsList.first;
     } catch (_) {
-      return null;
+      yield null;
     }
   }
 }
