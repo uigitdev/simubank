@@ -31,7 +31,11 @@ class AppProviders {
     RouteName.auth => [
       BlocProvider<AuthBloc>(
         create: (context) {
-          return AuthBloc(AuthLoginUseCase(), SetSessionUseCase());
+          return AuthBloc(
+            AuthLoginUseCase(),
+            SetSessionUseCase(),
+            GetObfuscationKeyUseCase(AuthRepositoryImpl(AuthDataSourcesImpl())),
+          );
         },
       ),
     ],
