@@ -8,6 +8,8 @@ class AuthLoginUseCase extends AppUseCase<String?, AuthLoginEntity> {
       return Future.error(ErrorHint(AppStrings.authErrorMissingFields));
     }
 
+    print('obf password: ${params.password}');
+
 
     await Future.delayed(const Duration(seconds: 2));
     return Future.error(ErrorHint('hello'));
