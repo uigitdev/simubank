@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:simubank/simubank.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,6 +15,7 @@ class _HomePageState extends State<HomePage> with AppUIHelper {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<UserBloc>().add(UserGetProfileDetails());
+      context.read<TransactionsBloc>().add(TransactionsGetTransactions());
     });
     super.initState();
   }
@@ -72,27 +74,56 @@ class _HomePageState extends State<HomePage> with AppUIHelper {
                   ),
                   child: HomeWelcomeTitle(),
                 ),
-                HomeTransactionFilterBox(
-                  controller: filterController,
-                  onSearch: (text) {
-                    print('search');
-                  },
-                ),
-                Expanded(
-                  child: ListView.separated(
-                    itemCount: 30,
-                    shrinkWrap: true,
-                    separatorBuilder: (context, position) {
-                      return Container(
-                        width: double.maxFinite,
-                        height: 0.5,
-                        color: Theme.of(context).disabledColor,
+                BlocBuilder<TransactionsBloc, TransactionsState>(
+                  builder: (context, state) {
+                    final transactions = <TransactionEntity>[];
+                    if (state is TransactionsNone) {
+                      return Expanded(
+                        child: Center(child: CupertinoActivityIndicator()),
                       );
-                    },
-                    itemBuilder: (context, position) {
-                      return Text('item');
-                    },
-                  ),
+                    } else if (state is TransactionsLoadedTransactions) {
+                      transactions.addAll(state.transactions);
+                    }
+
+                    return Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          HomeTransactionFilterBox(
+                            controller: filterController,
+                            onSearch:
+                                (text) => context.read<TransactionsBloc>().add(
+                                  TransactionsSearchTransaction(text),
+                                ),
+                          ),
+                          Visibility(
+                            visible: transactions.isNotEmpty,
+                            replacement: Expanded(
+                              child: Center(
+                                child: Text(AppStrings.transactionsEmpty),
+                              ),
+                            ),
+                            child: Expanded(
+                              child: ListView.separated(
+                                itemCount: transactions.length,
+                                shrinkWrap: true,
+                                separatorBuilder: (context, position) {
+                                  return Container(
+                                    width: double.maxFinite,
+                                    height: 0.5,
+                                    color: Theme.of(context).disabledColor,
+                                  );
+                                },
+                                itemBuilder: (context, position) {
+                                  return Text('item');
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

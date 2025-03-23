@@ -21,6 +21,9 @@ class GetUserProfileDetailsRequest
   JSONListParser<List<UserProfileDetailsModel>> get listParser => _parseList;
 
   @override
+  Map<String, dynamic> get queryParams => {'id': sessionState.sessionId};
+
+  @override
   HTTPRequestHolderDummyResponse?
   get dummyResponse => HTTPRequestHolderDummyResponse(
     isDummyResponse: ApiConfig.requestStatus(runtimeType),

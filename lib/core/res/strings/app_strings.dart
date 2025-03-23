@@ -25,6 +25,7 @@ class AppStrings{
   static final String profileHello = 'Hello';
 
   static final String transactionSearch = 'Search transaction';
+  static final String transactionsEmpty = 'No found transactions';
 
   static final String snackBarOk = 'OK';
   static final String snackBarNoInternet = 'No Internet Connection';

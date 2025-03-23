@@ -75,3 +75,16 @@ export 'package:simubank/features/home/data/datasources/user_data_sources_impl.d
 export 'package:simubank/features/home/data/repository/user_repository_impl.dart';
 export 'package:simubank/features/home/presentation/widgets/home_welcome_title.dart';
 export 'package:simubank/features/home/presentation/widgets/home_transaction_filter_box.dart';
+export 'package:simubank/features/home/domain/entities/transaction_entity.dart';
+export 'package:simubank/features/home/data/model/transaction_model.dart';
+export 'package:simubank/request/get_transactions_request.dart';
+export 'package:simubank/features/home/data/datasources/transaction_data_source.dart';
+export 'package:simubank/features/home/domain/repository/transaction_repository.dart';
+export 'package:simubank/features/home/presentation/bloc/transactions/transactions_event.dart';
+export 'package:simubank/features/home/presentation/bloc/transactions/transactions_state.dart';
+export 'package:simubank/features/home/domain/usecase/get_transactions_use_case.dart';
+export 'package:simubank/features/home/presentation/bloc/transactions/transactions_bloc.dart';
+export 'package:simubank/features/home/data/datasources/transaction_data_source_impl.dart';
+export 'package:simubank/features/home/data/repository/transaction_repository_impl.dart';
+export 'package:simubank/features/home/domain/entities/search_transaction_entity.dart';
+export 'package:simubank/features/home/domain/usecase/search_transaction_use_case.dart';
