@@ -21,4 +21,5 @@ class AppStrings{
   static final String authErrorSomethingWentWrong = 'Something went wrong during authentication.';
 
   static final String snackBarOk = 'OK';
+  static final String snackBarNoInternet = 'No Internet Connection';
 }

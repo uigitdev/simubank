@@ -65,7 +65,10 @@ class AppRoutes {
     final routeProvider = serviceLocator<AppProviders>().getProviderByRoute(
       route,
     );
-    if (routeProvider.isEmpty) return route.page;
-    return MultiBlocProvider(providers: routeProvider, child: route.page);
+    if (routeProvider.isEmpty) return NetworkHandlerPage(page: route.page);
+    return MultiBlocProvider(
+      providers: routeProvider,
+      child: NetworkHandlerPage(page: route.page),
+    );
   }
 }
