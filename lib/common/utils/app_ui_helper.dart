@@ -14,7 +14,11 @@ mixin AppUIHelper {
         action: SnackBarAction(
           label: AppStrings.snackBarOk,
           textColor: Theme.of(context).textTheme.titleMedium?.color,
-          onPressed: () => ScaffoldMessenger.of(context).hideCurrentSnackBar(),
+          onPressed: () {
+            if (context.mounted) {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            }
+          },
         ),
         behavior: SnackBarBehavior.floating,
       ),
