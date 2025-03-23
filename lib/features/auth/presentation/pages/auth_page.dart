@@ -182,7 +182,7 @@ class _AuthPageState extends State<AuthPage> with AppUIHelper {
                       right: AppSizes(context).paddingHorizontal,
                       bottom: AppSizes(context).paddingPageBottom,
                     ),
-                    child: AuthVersionTitleWidget(),
+                    child: AuthVersionTitle(),
                   ),
                 ),
               );

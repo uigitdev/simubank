@@ -22,6 +22,9 @@ class AppStrings{
   static final String authErrorSomethingWentWrongLogout = 'Something went wrong during logout.';
 
   static final String profileNotFound = 'User profile not found.';
+  static final String profileHello = 'Hello';
+
+  static final String transactionSearch = 'Search transaction';
 
   static final String snackBarOk = 'OK';
   static final String snackBarNoInternet = 'No Internet Connection';

@@ -15,10 +15,12 @@ class AppInputField extends StatefulWidget {
   final bool isSuggestion;
   final bool isReadOnly;
   final bool isEnabled;
+  final double? inputHeight;
   final int minLines;
   final int maxLines;
   final int? maxLength;
   final Function(String)? onSubmitted;
+  final Function(String)? onChanged;
   final VoidCallback? onEditingComplete;
 
   const AppInputField({
@@ -37,11 +39,13 @@ class AppInputField extends StatefulWidget {
     this.isSuggestion = false,
     this.isReadOnly = false,
     required this.isEnabled,
+    this.inputHeight,
     this.minLines = 1,
     this.maxLines = 1,
     this.maxLength,
     this.onEditingComplete,
     this.onSubmitted,
+    this.onChanged,
   });
 
   @override
@@ -70,7 +74,7 @@ class _AppInputFieldState extends State<AppInputField> {
       children: [
         Expanded(
           child: SizedBox(
-            height: AppSizes(context).inputHeight,
+            height: _inputHeight,
             child: ClipRRect(
               child: TextField(
                 textAlignVertical: TextAlignVertical.center,
@@ -96,6 +100,7 @@ class _AppInputFieldState extends State<AppInputField> {
                 decoration: _decoration(),
                 scrollPadding: _scrollPadding,
                 keyboardType: widget.inputType,
+                onChanged: widget.onChanged,
                 inputFormatters: _inputFormatters(),
               ),
             ),
@@ -127,7 +132,7 @@ class _AppInputFieldState extends State<AppInputField> {
       contentPadding: EdgeInsets.symmetric(
         horizontal: AppSizes(context).inputDecorationHorizontal,
         // Calculate vertical center position of text.
-        vertical: (AppSizes(context).inputHeight / 2) - (AppSizes(context).titleMedium / 1.5),
+        vertical: (_inputHeight / 2) - (AppSizes(context).titleMedium / 1.5),
       ),
       focusedBorder: InputBorder.none,
       enabledBorder: InputBorder.none,
@@ -176,6 +181,8 @@ class _AppInputFieldState extends State<AppInputField> {
     }
     return null;
   }
+
+  double get _inputHeight => widget.inputHeight ?? AppSizes(context).inputHeight;
 }
 
 /// Email input formatter

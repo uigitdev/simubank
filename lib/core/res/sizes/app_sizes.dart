@@ -9,6 +9,7 @@ class AppSizes {
   double get paddingHorizontal => 15;
   double get paddingVertical => 15;
   double get paddingAuthHorizontal => 40;
+  double get paddingHomeHorizontal => 40;
   double get paddingButtonInternalVertical => 15;
 
   double get buttonRadius => 8;
@@ -18,8 +19,10 @@ class AppSizes {
   double get label => 13;
   double get titleMedium => 17;
   double get titleLarge => 30;
+  double get titleLarge2 => 25;
 
   double get inputRadius => 8;
+  double get filterInputHeight => 40;
   double get inputHeight => 50;
   double get inputBorderWeight => 1;
   double get inputDecorationHorizontal => 10;
@@ -27,4 +30,6 @@ class AppSizes {
 
   double get appLogoSize => 70;
   double get appBarTitle => 25;
+
+  double get filterIconSize => 25;
 }

@@ -15,7 +15,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       final profile = await _getUserProfileDetailsUseCase.call(NoData());
 
       if (profile != null) {
-        //TODO cache profile data by sessionId;
         emit(UserGetProfileDetailsSuccess(profile));
       } else {
         emit(UserGetProfileDetailsFailed(message: AppStrings.profileNotFound));

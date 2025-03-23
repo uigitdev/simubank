@@ -1,7 +1,7 @@
 import 'package:simubank/simubank.dart';
 
-class AuthVersionTitleWidget extends StatelessWidget {
-  const AuthVersionTitleWidget({super.key});
+class AuthVersionTitle extends StatelessWidget {
+  const AuthVersionTitle({super.key});
 
   @override
   Widget build(BuildContext context) {
