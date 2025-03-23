@@ -19,7 +19,7 @@ class HomeWelcomeTitle extends StatelessWidget {
             style: Theme.of(context).textTheme.labelLarge,
             children: [
               TextSpan(
-                text: name != null ? ' $name!' : '',
+                text: name != null ? ', $name!' : '',
                 style: Theme.of(
                   context,
                 ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),

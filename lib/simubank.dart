@@ -78,3 +78,5 @@ export 'package:simubank/features/home/presentation/widgets/home_transaction_fil
 export 'package:simubank/features/home/domain/entities/transaction_entity.dart';
 export 'package:simubank/features/home/data/model/transaction_model.dart';
 export 'package:simubank/request/get_transactions_request.dart';
+export 'package:simubank/features/home/data/datasources/transaction_data_source.dart';
+export 'package:simubank/features/home/domain/repository/transaction_repository.dart';
