@@ -6,15 +6,21 @@ mixin AppUIHelper {
       SnackBar(
         content: Text(
           message,
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal),
+          style: TextStyle(
+            color: Theme.of(context).textTheme.titleMedium?.color,
+            fontWeight: FontWeight.normal,
+            fontSize: AppSizes(context).titleMedium,
+          ),
         ),
         backgroundColor: Theme.of(context).colorScheme.error,
         action: SnackBarAction(
           label: AppStrings.snackBarOk,
           textColor: Theme.of(context).textTheme.titleMedium?.color,
-          onPressed: () => ScaffoldMessenger.of(context).hideCurrentSnackBar(),
+          onPressed: () {
+            if (context.mounted) {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            }
+          },
         ),
         behavior: SnackBarBehavior.floating,
       ),

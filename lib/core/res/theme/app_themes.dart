@@ -47,6 +47,10 @@ class AppThemes {
         fontWeight: FontWeight.bold,
         color: Color(0xFF2563EB),
       ),
+      labelLarge: TextStyle(
+        color: Colors.black,
+        fontSize: AppSizes(context).titleLarge2,
+      ),
     ),
     disabledColor: Color(0xFFD1D5DB),
     iconButtonTheme: IconButtonThemeData(
@@ -66,6 +70,7 @@ class AppThemes {
         ),
       ),
     ),
+    dividerColor: Colors.grey[600],
     snackBarTheme: SnackBarThemeData(elevation: 0),
     colorScheme: ColorScheme.of(context).copyWith(error: Color(0xFFDC2626)),
   );
@@ -112,6 +117,10 @@ class AppThemes {
         fontWeight: FontWeight.bold,
         color: Color(0xFF2563EB),
       ),
+      labelLarge: TextStyle(
+        color: Colors.white,
+        fontSize: AppSizes(context).titleLarge2,
+      ),
     ),
     disabledColor: Color(0xFF727477),
     iconButtonTheme: IconButtonThemeData(
@@ -131,6 +140,7 @@ class AppThemes {
         ),
       ),
     ),
+    dividerColor: Colors.grey[600],
     snackBarTheme: SnackBarThemeData(elevation: 0),
     colorScheme: ColorScheme.of(context).copyWith(error: Color(0xFFDC2626)),
   );

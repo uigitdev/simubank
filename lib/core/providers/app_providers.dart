@@ -37,7 +37,16 @@ class AppProviders {
   List<BlocProvider> getProviderByRoute(RouteName route) => switch (route) {
     RouteName.initialize => [],
     RouteName.unknown => [],
-    RouteName.home => [],
+    RouteName.home => [
+      BlocProvider<UserBloc>(
+        create:
+            (context) => UserBloc(
+              GetUserProfileDetailsUseCase(
+                UserRepositoryImpl(UserDataSourcesImpl()),
+              ),
+            ),
+      ),
+    ],
     RouteName.auth => [],
   };
 }

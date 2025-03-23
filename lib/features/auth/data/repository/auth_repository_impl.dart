@@ -15,7 +15,7 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<SessionModel?> postAuthLogin({
+  Future<SessionEntity?> postAuthLogin({
     required String email,
     required String password,
   }) async {
