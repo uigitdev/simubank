@@ -9,6 +9,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with AppUIHelper {
   @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<UserBloc>().add(UserGetProfileDetails());
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

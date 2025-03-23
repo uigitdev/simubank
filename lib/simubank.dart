@@ -62,3 +62,14 @@ export 'package:simubank/features/network/presentation/page/network_handler_page
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'dart:async';
 export 'package:simubank/features/auth/domain/usecase/remove_session_use_case.dart';
+export 'package:simubank/features/home/domain/entities/user_profile_details_entity.dart';
+export 'package:simubank/features/home/data/model/user_profile_details_model.dart';
+export 'package:simubank/request/get_user_profile_details_request.dart';
+export 'package:simubank/features/home/data/datasources/user_data_sources.dart';
+export 'package:simubank/features/home/domain/repository/user_repository.dart';
+export 'package:simubank/features/home/presentation/bloc/user/user_event.dart';
+export 'package:simubank/features/home/presentation/bloc/user/user_state.dart';
+export 'package:simubank/features/home/domain/usecase/get_user_profile_details_use_case.dart';
+export 'package:simubank/features/home/presentation/bloc/user/user_bloc.dart';
+export 'package:simubank/features/home/data/datasources/user_data_sources_impl.dart';
+export 'package:simubank/features/home/data/repository/user_repository_impl.dart';
