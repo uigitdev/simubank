@@ -7,7 +7,7 @@ class GetObfuscationKeyUseCase
   GetObfuscationKeyUseCase(this._repository);
 
   @override
-  Future<ObfuscationKeyEntity?> call(NoData params) async {
+  Future<ObfuscationKeyEntity?> call(NoData _) async {
     try {
       return await _repository.getObfuscationKey();
     } catch (_) {
