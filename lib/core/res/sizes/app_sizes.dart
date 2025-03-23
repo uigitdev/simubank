@@ -20,7 +20,7 @@ class AppSizes {
   double get titleLarge => 30;
 
   double get inputRadius => 8;
-  double get inputHeight => 40;
+  double get inputHeight => 50;
   double get inputBorderWeight => 1;
   double get inputDecorationHorizontal => 10;
   double get inputIconSize => 22;
