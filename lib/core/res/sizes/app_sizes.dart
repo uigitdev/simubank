@@ -26,4 +26,5 @@ class AppSizes {
   double get inputIconSize => 22;
 
   double get appLogoSize => 70;
+  double get appBarTitle => 25;
 }

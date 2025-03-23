@@ -9,10 +9,15 @@ class AppThemes {
     primaryColor: Color(0xFF2563EB),
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: AppBarTheme(
-      color: Colors.grey[200],
-      surfaceTintColor: Colors.grey[200],
-      elevation: 2,
-      shadowColor: Colors.black.withValues(alpha: 0.5),
+      color: Colors.white,
+      surfaceTintColor: Colors.white,
+      elevation: 0,
+      titleTextStyle: TextStyle(
+        color: Color(0xFF2563EB),
+        fontSize: AppSizes(context).appBarTitle,
+        fontWeight: FontWeight.bold,
+      ),
+      actionsIconTheme: IconThemeData(color: Color(0xFF2563EB)),
     ),
     textTheme: TextTheme(
       labelMedium: TextStyle(
@@ -69,10 +74,15 @@ class AppThemes {
     primaryColor: Color(0xFF2563EB),
     scaffoldBackgroundColor: Colors.black,
     appBarTheme: AppBarTheme(
-      color: Colors.grey[900],
-      surfaceTintColor: Colors.grey[900],
-      elevation: 2,
-      shadowColor: Colors.grey.withValues(alpha: 0.2),
+      color: Colors.black,
+      surfaceTintColor: Colors.black,
+      elevation: 0,
+      titleTextStyle: TextStyle(
+        color: Color(0xFF2563EB),
+        fontSize: AppSizes(context).appBarTitle,
+        fontWeight: FontWeight.bold,
+      ),
+      actionsIconTheme: IconThemeData(color: Color(0xFF2563EB)),
     ),
     textTheme: TextTheme(
       labelMedium: TextStyle(
