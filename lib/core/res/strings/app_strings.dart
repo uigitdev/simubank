@@ -14,5 +14,8 @@ class AppStrings{
   static final String authPasswordHint = 'Password';
   static final String showPassword = 'Show password';
 
+  static final String authErrorInvalidSessionId = 'Invalid session ID.';
+  static final String authErrorMissingFields = 'Missing required fields.';
+
   static final String snackBarOk = 'OK';
 }

@@ -12,10 +12,10 @@ class InitializeBloc extends Bloc<InitializeEvent, InitializeState> {
   /// Get stored [sessionId] and add it to [sessionState] if exists otherwise
   /// send Unauthenticated event.
   void _onInitializeStart(
-    InitializeEvent event,
+    InitializeEvent _,
     Emitter<InitializeState> emit,
   ) async {
-    final sessionId = await _getSessionUseCase.call();
+    final sessionId = await _getSessionUseCase.call(NoData());
     sessionState.setSessionId(sessionId);
 
     // Set duration to show indicator.

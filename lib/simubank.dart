@@ -38,3 +38,7 @@ export 'package:simubank/features/auth/presentation/bloc/auth_event.dart';
 export 'package:simubank/features/auth/presentation/bloc/auth_state.dart';
 export 'package:simubank/features/auth/presentation/bloc/auth_bloc.dart';
 export 'package:simubank/common/utils/app_ui_helper.dart';
+export 'package:simubank/features/auth/domain/usecase/auth_login_use_case.dart';
+export 'package:simubank/features/auth/domain/entities/auth_login_entity.dart';
+export 'package:simubank/core/entities/no_data.dart';
+export 'package:simubank/features/auth/domain/usecase/set_session_use_case.dart';
