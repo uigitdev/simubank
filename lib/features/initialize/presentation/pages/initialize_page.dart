@@ -23,11 +23,11 @@ class _InitializePageState extends State<InitializePage> {
     return BlocListener<InitializeBloc, InitializeState>(
       listener: (context, state) {
         return switch (state) {
-          InitializeNone() => {},
-          InitializeAuthenticated() => serviceLocator<AppRoutes>().go(
+          InitializeNone _ => {},
+          InitializeAuthenticated _ => serviceLocator<AppRoutes>().go(
             RouteName.home,
           ),
-          InitializeUnauthenticated() => serviceLocator<AppRoutes>().go(
+          InitializeUnauthenticated _ => serviceLocator<AppRoutes>().go(
             RouteName.auth,
           ),
         };
