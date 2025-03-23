@@ -10,7 +10,7 @@ class GetTransactionUseCase
   Future<List<TransactionEntity>> call(NoData _) async {
     try {
       return await _repository.getTransactions() ?? [];
-    } catch (_) {
+    } catch (e) {
       return [];
     }
   }

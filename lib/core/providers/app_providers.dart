@@ -46,6 +46,15 @@ class AppProviders {
               ),
             ),
       ),
+      BlocProvider<TransactionsBloc>(
+        create:
+            (context) => TransactionsBloc(
+              GetTransactionUseCase(
+                TransactionRepositoryImpl(TransactionDataSourceImpl()),
+              ),
+              SearchTransactionUseCase(),
+            ),
+      ),
     ],
     RouteName.auth => [],
   };

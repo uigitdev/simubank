@@ -30,7 +30,7 @@ class AppRequestWrapper<T> extends HTTPRequestHolder<T> {
   dynamic get requestBody => _request.requestBody;
 
   @override
-  Map<String, dynamic> get queryParams => _mergedQueryParams();
+  Map<String, dynamic> get queryParams => _request.queryParams;
 
   @override
   Map<String, dynamic> get headers => _mergedHeaders();
@@ -40,15 +40,6 @@ class AppRequestWrapper<T> extends HTTPRequestHolder<T> {
 
   @override
   HTTPRequestHolderDummyResponse? get dummyResponse => _request.dummyResponse;
-
-  /// Merge request queryParams with [sessionState]
-  ///
-  /// Add [sessionState], [sessionId] to every request.
-  Map<String, dynamic> _mergedQueryParams() {
-    final queryParams = _request.queryParams;
-    queryParams.putIfAbsent('id', () => sessionState.sessionId);
-    return queryParams;
-  }
 
   /// Merge request header with [sessionState]
   ///

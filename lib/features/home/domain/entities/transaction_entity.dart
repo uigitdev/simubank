@@ -3,7 +3,7 @@ class TransactionEntity {
   final int userId;
   final DateTime date;
   final String merchant;
-  final double amount;
+  final int amount;
   final String currency;
   final String? description;
   final String fromAccount;

@@ -9,7 +9,7 @@ class TransactionRepositoryImpl extends TransactionRepository {
   Future<List<TransactionEntity>?> getTransactions() async {
     try {
       return await _dataSource.getTransactions();
-    } catch (_) {
+    } catch (e) {
       return null;
     }
   }
