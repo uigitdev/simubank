@@ -17,9 +17,10 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     Emitter<TransactionsState> emit,
   ) async {
     try {
-      final transactions = await _getTransactionUseCase.call(NoData());
-      _allTransactions = transactions;
-      emit(TransactionsLoadedTransactions(transactions));
+      await for (final transactions in _getTransactionUseCase.call(NoData())) {
+        _allTransactions = transactions;
+        emit(TransactionsLoadedTransactions(transactions));
+      }
     } catch (error) {
       emit(TransactionLoadFailed(message: '$error'));
     }

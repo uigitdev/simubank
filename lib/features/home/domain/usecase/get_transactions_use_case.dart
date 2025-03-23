@@ -1,17 +1,17 @@
 import 'package:simubank/simubank.dart';
 
 class GetTransactionUseCase
-    extends AppUseCase<List<TransactionEntity>, NoData> {
+    extends AppStreamUseCase<List<TransactionEntity>, NoData> {
   final TransactionRepository _repository;
 
   GetTransactionUseCase(this._repository);
 
   @override
-  Future<List<TransactionEntity>> call(NoData _) async {
+  Stream<List<TransactionEntity>> call(NoData _) async* {
     try {
-      return await _repository.getTransactions() ?? [];
+      yield await _repository.getTransactions() ?? [];
     } catch (e) {
-      return [];
+      yield [];
     }
   }
 }

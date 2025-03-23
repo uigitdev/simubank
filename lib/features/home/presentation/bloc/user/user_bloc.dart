@@ -11,12 +11,18 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     UserGetProfileDetails event,
     Emitter<UserState> emit,
   ) async {
-    await for (final profile in _getUserProfileDetailsUseCase.call(NoData())) {
-      if (profile != null) {
-        emit(UserGetProfileDetailsSuccess(profile));
-      } else {
-        emit(UserGetProfileDetailsFailed(message: AppStrings.profileNotFound));
+    try {
+      await for (final profile in _getUserProfileDetailsUseCase.call(NoData())) {
+        if (profile != null) {
+          emit(UserGetProfileDetailsSuccess(profile));
+        } else {
+          emit(
+            UserGetProfileDetailsFailed(message: AppStrings.profileNotFound),
+          );
+        }
       }
+    } catch (error) {
+      emit(UserGetProfileDetailsFailed(message: '$error'));
     }
   }
 }
