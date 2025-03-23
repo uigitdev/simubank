@@ -7,6 +7,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserGetProfileDetails>(_onGetProfileDetails);
   }
 
+  /// Starts listening to profile details.
+  ///
+  /// If profile details exist, updates the state
+  /// otherwise, emits an error event.
   void _onGetProfileDetails(
     UserGetProfileDetails event,
     Emitter<UserState> emit,

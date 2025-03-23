@@ -12,6 +12,11 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     on<TransactionsSearchTransaction>(_onSearchTransactions);
   }
 
+  /// Fetches and listens for the transaction data
+  ///
+  /// Updates the state with the fetched transactions,
+  /// and stores the results in _allTransactions.
+  /// In case of an error, emits a failure state with the error message.
   void _onGetGetTransactions(
     TransactionsGetTransactions event,
     Emitter<TransactionsState> emit,
@@ -26,6 +31,11 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     }
   }
 
+  /// Filter transactions
+  ///
+  /// Filter transactions based on the search term and updates the state
+  /// with the filtered results. In case of an error, emits a failure
+  /// state with the error message.
   void _onSearchTransactions(
     TransactionsSearchTransaction event,
     Emitter<TransactionsState> emit,
