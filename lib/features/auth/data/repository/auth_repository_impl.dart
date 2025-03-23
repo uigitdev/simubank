@@ -13,4 +13,16 @@ class AuthRepositoryImpl extends AuthRepository {
       return null;
     }
   }
+
+  @override
+  Future<SessionModel?> postAuthLogin({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      return await _dataSources.postAuthLogin(email: email, password: password);
+    } catch (_) {
+      return null;
+    }
+  }
 }

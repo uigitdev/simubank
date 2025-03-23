@@ -1,18 +1,28 @@
 import 'package:simubank/simubank.dart';
 
-class AuthLoginUseCase extends AppUseCase<String?, AuthLoginEntity> {
+class AuthLoginUseCase extends AppUseCase<SessionEntity?, AuthLoginEntity> {
+  final AuthRepository _repository;
+
+  AuthLoginUseCase(this._repository);
 
   @override
-  Future<String?> call(AuthLoginEntity login) async {
-    if(login.email.isEmpty || login.password.isEmpty){
-      return Future.error(ErrorHint(AppStrings.authErrorMissingFields));
+  Future<SessionEntity?> call(AuthLoginEntity login) async {
+    try {
+      if (login.email.isEmpty || login.password.isEmpty) {
+        return Future.error(ErrorHint(AppStrings.authErrorMissingFields));
+      }
+      final session = await _repository.postAuthLogin(
+        email: login.email,
+        password: login.password,
+      );
+
+      if (session == null) {
+        return Future.error(ErrorHint(AppStrings.authErrorLoginFailed));
+      }
+
+      return session;
+    } catch (_) {
+      return null;
     }
-
-    print('obf password: ${login.password}');
-
-
-    await Future.delayed(const Duration(seconds: 2));
-    return Future.error(ErrorHint('hello'));
-
   }
 }

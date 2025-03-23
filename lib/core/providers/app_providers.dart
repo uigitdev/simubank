@@ -32,7 +32,7 @@ class AppProviders {
       BlocProvider<AuthBloc>(
         create: (context) {
           return AuthBloc(
-            AuthLoginUseCase(),
+            AuthLoginUseCase(AuthRepositoryImpl(AuthDataSourcesImpl())),
             SetSessionUseCase(),
             GetObfuscationKeyUseCase(AuthRepositoryImpl(AuthDataSourcesImpl())),
           );

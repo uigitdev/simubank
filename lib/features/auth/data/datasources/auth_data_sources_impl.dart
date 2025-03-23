@@ -5,4 +5,14 @@ class AuthDataSourcesImpl extends AuthDataSources {
   Future<ObfuscationKeyEntity?> getObfuscationKey() async {
     return await AppRequestWrapper(GetObfuscationKeyRequest()).send();
   }
+
+  @override
+  Future<SessionModel?> postAuthLogin({
+    required String email,
+    required String password,
+  }) async {
+    return await AppRequestWrapper(
+      PostAuthLoginRequest(email: email, password: password),
+    ).send();
+  }
 }
