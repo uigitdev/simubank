@@ -33,16 +33,11 @@ class _AuthPageState extends State<AuthPage> with AppUIHelper {
               ),
               child: BlocListener<AuthBloc, AuthState>(
                 listener: (context, state) {
-                  return switch (state) {
-                    AuthNone _ => {},
-                    AuthInProgress _ => {},
-                    AuthAuthenticatedSuccess _ => serviceLocator<AppRoutes>()
-                        .go(RouteName.home),
-                    AuthAuthenticationFailed params => showErrorSnackbar(
-                      context,
-                      params.message,
-                    ),
-                  };
+                  if (state is AuthAuthenticatedSuccess) {
+                    serviceLocator<AppRoutes>().go(RouteName.home);
+                  } else if (state is AuthAuthenticationFailed) {
+                    showErrorSnackbar(context, state.message);
+                  }
                 },
                 child: BlocBuilder<AuthBloc, AuthState>(
                   builder: (context, state) {

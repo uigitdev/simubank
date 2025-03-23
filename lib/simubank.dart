@@ -61,3 +61,4 @@ export 'package:simubank/request/post_auth_login_request.dart';
 export 'package:simubank/features/network/presentation/page/network_handler_page.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'dart:async';
+export 'package:simubank/features/auth/domain/usecase/remove_session_use_case.dart';

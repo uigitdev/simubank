@@ -23,3 +23,13 @@ class AuthAuthenticationFailed extends AuthState {
     this.stackTrace,
   });
 }
+
+class AuthLogoutSuccess extends AuthState {}
+
+class AuthLogoutFailed extends AuthState {
+  final String message;
+  final Object? error;
+  final StackTrace? stackTrace;
+
+  AuthLogoutFailed({required this.message, this.error, this.stackTrace});
+}

@@ -4,13 +4,34 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthLoginUseCase _authLoginUseCase;
   final SetSessionUseCase _setSessionUseCase;
   final GetObfuscationKeyUseCase _getObfuscationKeyUseCase;
+  final RemoveSessionUseCase _removeSessionUseCase;
 
   AuthBloc(
     this._authLoginUseCase,
     this._setSessionUseCase,
     this._getObfuscationKeyUseCase,
+    this._removeSessionUseCase,
   ) : super(AuthNone()) {
     on<AuthLogin>(_onAuthLogin);
+    on<AuthLogout>(_onAuthLogout);
+  }
+
+  void _onAuthLogout(AuthLogout event, Emitter<AuthState> emit) async {
+    try {
+      final removeSessionIdStorageResult = await _removeSessionUseCase.call(NoData());
+
+      if (removeSessionIdStorageResult) {
+        sessionState.clearSessionId();
+
+        //TODO (TDavid): remove stored data.
+        emit(AuthLogoutSuccess());
+      } else {
+        emit(AuthLogoutFailed(message: AppStrings.authErrorSomethingWentWrongLogout));
+      }
+
+    } catch(error) {
+      emit(AuthLogoutFailed(message: '$error'));
+    }
   }
 
   /// Handles the login process.

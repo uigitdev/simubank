@@ -8,3 +8,5 @@ class AuthLogin extends AuthEvent {
 
   const AuthLogin({required this.email, required this.password});
 }
+
+class AuthLogout extends AuthEvent {}

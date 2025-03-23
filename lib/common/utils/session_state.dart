@@ -11,4 +11,8 @@ class SessionState {
   void setSessionId(String? sessionId) {
     this.sessionId = sessionId;
   }
+
+  void clearSessionId() {
+    sessionId = null;
+  }
 }
