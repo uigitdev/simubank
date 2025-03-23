@@ -7,7 +7,7 @@ class AuthPage extends StatefulWidget {
   State<AuthPage> createState() => _AuthPageState();
 }
 
-class _AuthPageState extends State<AuthPage> {
+class _AuthPageState extends State<AuthPage> with AppUIHelper {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -31,124 +31,149 @@ class _AuthPageState extends State<AuthPage> {
               padding: EdgeInsets.symmetric(
                 horizontal: AppSizes(context).paddingAuthHorizontal,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: AppSizes(context).paddingVertical,
+              child: BlocListener<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  return switch (state) {
+                    AuthNone _ => {},
+                    AuthInProgress _ => {},
+                    AuthAuthenticatedSuccess _ => serviceLocator<AppRoutes>()
+                        .go(RouteName.home),
+                    AuthAuthenticationFailed params => showErrorSnackbar(
+                      context,
+                      params.message,
                     ),
-                    child: AuthLogo(),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      bottom: AppSizes(context).paddingVertical,
-                    ),
-                    child: Semantics(
-                      label: AppStrings.authLogin,
-                      child: Text(
-                        AppStrings.authLogin,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                    ),
-                  ),
-                  FocusTraversalGroup(
-                    child: Column(
+                  };
+                },
+                child: BlocBuilder<AuthBloc, AuthState>(
+                  builder: (context, state) {
+                    final isInProgress = state is AuthInProgress;
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(
-                            bottom: AppSizes(context).paddingVertical,
+                          padding: EdgeInsets.symmetric(
+                            vertical: AppSizes(context).paddingVertical,
                           ),
-                          child: Semantics(
-                            label: AppStrings.authEmailHint,
-                            child: AppInputField(
-                              key: Key(AppStrings.authEmailHint),
-                              controller: emailController,
-                              hint: AppStrings.authEmailHint,
-                              action: TextInputAction.next,
-                              inputType: TextInputType.emailAddress,
-                              capitalization: TextCapitalization.none,
-                              isAutofocus: true,
-                              isEnabled: true,
-                            ),
-                          ),
+                          child: AuthLogo(),
                         ),
                         Padding(
                           padding: EdgeInsets.only(
                             bottom: AppSizes(context).paddingVertical,
                           ),
                           child: Semantics(
-                            label: AppStrings.authPasswordHint,
-                            child: AppInputField(
-                              key: Key(AppStrings.authPasswordHint),
-                              controller: passwordController,
-                              hint: AppStrings.authPasswordHint,
-                              action: TextInputAction.next,
-                              inputType: TextInputType.visiblePassword,
-                              capitalization: TextCapitalization.none,
-                              isAutofocus: true,
-                              isEnabled: true,
-                              iconAsset: AppIcon.password,
-                              showPasswordIconAsset: AppIcon.showPassword,
-                              onSubmitted: (text) {
-                                //TODO
+                            label: AppStrings.authLogin,
+                            child: Text(
+                              AppStrings.authLogin,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ),
+                        ),
+                        FocusTraversalGroup(
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  bottom: AppSizes(context).paddingVertical,
+                                ),
+                                child: Semantics(
+                                  label: AppStrings.authEmailHint,
+                                  child: AppInputField(
+                                    key: Key(AppStrings.authEmailHint),
+                                    controller: emailController,
+                                    hint: AppStrings.authEmailHint,
+                                    action: TextInputAction.next,
+                                    inputType: TextInputType.emailAddress,
+                                    capitalization: TextCapitalization.none,
+                                    isAutofocus: true,
+                                    isEnabled: !isInProgress,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  bottom: AppSizes(context).paddingVertical,
+                                ),
+                                child: Semantics(
+                                  label: AppStrings.authPasswordHint,
+                                  child: AppInputField(
+                                    key: Key(AppStrings.authPasswordHint),
+                                    controller: passwordController,
+                                    hint: AppStrings.authPasswordHint,
+                                    action: TextInputAction.next,
+                                    inputType: TextInputType.visiblePassword,
+                                    capitalization: TextCapitalization.none,
+                                    isAutofocus: true,
+                                    isEnabled: !isInProgress,
+                                    iconAsset: AppIcon.password,
+                                    showPasswordIconAsset: AppIcon.showPassword,
+                                    onSubmitted:
+                                        (text) => _loginSubmitFunction(),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: AppSizes(context).paddingVertical,
+                          ),
+                          child: Semantics(
+                            label: AppStrings.authLogin,
+                            child: AuthButton(
+                              key: Key('login'),
+                              isEnabled: !isInProgress,
+                              showProgress: isInProgress,
+                              title: AppStrings.authLogin.toUpperCase(),
+                              onTap: _loginSubmitFunction,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: AppSizes(context).paddingVertical,
+                          ),
+                          child: Semantics(
+                            label: AppStrings.authNoAccount,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                AppStrings.authNoAccount,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: AppSizes(context).paddingVertical,
+                          ),
+                          child: Semantics(
+                            label: AppStrings.authRegistration,
+                            child: AuthButton(
+                              key: Key('registration'),
+                              isEnabled: false,
+                              title: AppStrings.authRegistration.toUpperCase(),
+                              onTap: () {
+                                //TODO (TDavid): implement registration button.
+                                throw UnimplementedError();
                               },
                             ),
                           ),
                         ),
                       ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: AppSizes(context).paddingVertical,
-                    ),
-                    child: Semantics(
-                      label: AppStrings.authLogin,
-                      child: AuthButton(
-                        key: Key('login'),
-                        title: AppStrings.authLogin.toUpperCase(),
-                        onTap: () {},
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: AppSizes(context).paddingVertical,
-                    ),
-                    child: Semantics(
-                      label: AppStrings.authNoAccount,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          AppStrings.authNoAccount,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: AppSizes(context).paddingVertical,
-                    ),
-                    child: Semantics(
-                      label: AppStrings.authRegistration,
-                      child: AuthButton(
-                        key: Key('registration'),
-                        isEnabled: false,
-                        title: AppStrings.authRegistration.toUpperCase(),
-                        onTap: () {},
-                      ),
-                    ),
-                  ),
-                ],
+                    );
+                  },
+                ),
               ),
             ),
           ),
+
+          /// Hide version number if keyboard is open.
           KeyboardVisibilityBuilder(
             builder: (context, isVisible) {
               return Visibility(
@@ -172,4 +197,8 @@ class _AuthPageState extends State<AuthPage> {
       ),
     );
   }
+
+  void _loginSubmitFunction() => context.read<AuthBloc>().add(
+    AuthLogin(email: emailController.text, password: passwordController.text),
+  );
 }
