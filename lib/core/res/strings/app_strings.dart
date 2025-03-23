@@ -18,6 +18,7 @@ class AppStrings{
   static final String authErrorInvalidSessionId = 'Invalid session ID.';
   static final String authErrorMissingFields = 'Missing required fields.';
   static final String authErrorLoginFailed = 'Incorrect username or password.';
+  static final String authErrorSomethingWentWrong = 'Something went wrong during authentication.';
 
   static final String snackBarOk = 'OK';
 }

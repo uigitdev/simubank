@@ -4,7 +4,11 @@ import 'package:simubank/simubank.dart';
 class GetSessionUseCase extends AppUseCase<String?, NoData> {
   @override
   Future<String?> call(NoData _) async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('sessionId');
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      return prefs.getString('sessionId');
+    } catch (_) {
+      return null;
+    }
   }
 }

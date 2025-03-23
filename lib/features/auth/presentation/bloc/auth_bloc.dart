@@ -36,9 +36,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
 
         if (session != null) {
-          await _setSessionUseCase.call(session.sessionId);
-          sessionState.setSessionId(session.sessionId);
-          emit(AuthAuthenticatedSuccess(session.sessionId));
+
+          final sessionIdStorageResult = await _setSessionUseCase.call(session.sessionId);
+          if (sessionIdStorageResult) {
+            sessionState.setSessionId(session.sessionId);
+            emit(AuthAuthenticatedSuccess(session.sessionId));
+          } else {
+            emit(AuthAuthenticationFailed(message: AppStrings.authErrorSomethingWentWrong));
+          }
+
         } else {
           emit(AuthAuthenticationFailed(message: AppStrings.authErrorInvalidSessionId));
         }
