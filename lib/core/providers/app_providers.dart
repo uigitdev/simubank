@@ -15,6 +15,11 @@ class AppProviders {
           return ThemeCubit();
         },
       ),
+      BlocProvider<InitializeBloc>(
+        create: (context) {
+          return InitializeBloc(GetSessionUseCase());
+        },
+      ),
     ];
   }
 
@@ -22,5 +27,17 @@ class AppProviders {
   List<BlocProvider> getProviderByRoute(RouteName route) => switch (route) {
     RouteName.initialize => [],
     RouteName.unknown => [],
+    RouteName.home => [],
+    RouteName.auth => [
+      BlocProvider<AuthBloc>(
+        create: (context) {
+          return AuthBloc(
+            AuthLoginUseCase(AuthRepositoryImpl(AuthDataSourcesImpl())),
+            SetSessionUseCase(),
+            GetObfuscationKeyUseCase(AuthRepositoryImpl(AuthDataSourcesImpl())),
+          );
+        },
+      ),
+    ],
   };
 }
