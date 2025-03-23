@@ -20,6 +20,16 @@ class AppProviders {
           return InitializeBloc(GetSessionUseCase());
         },
       ),
+      BlocProvider<AuthBloc>(
+        create: (context) {
+          return AuthBloc(
+            AuthLoginUseCase(AuthRepositoryImpl(AuthDataSourcesImpl())),
+            SetSessionUseCase(),
+            GetObfuscationKeyUseCase(AuthRepositoryImpl(AuthDataSourcesImpl())),
+            RemoveSessionUseCase(),
+          );
+        },
+      ),
     ];
   }
 
@@ -28,16 +38,6 @@ class AppProviders {
     RouteName.initialize => [],
     RouteName.unknown => [],
     RouteName.home => [],
-    RouteName.auth => [
-      BlocProvider<AuthBloc>(
-        create: (context) {
-          return AuthBloc(
-            AuthLoginUseCase(AuthRepositoryImpl(AuthDataSourcesImpl())),
-            SetSessionUseCase(),
-            GetObfuscationKeyUseCase(AuthRepositoryImpl(AuthDataSourcesImpl())),
-          );
-        },
-      ),
-    ],
+    RouteName.auth => [],
   };
 }
