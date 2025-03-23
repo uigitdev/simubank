@@ -93,10 +93,7 @@ class _HomePageState extends State<HomePage> with AppUIHelper {
                             controller: filterController,
                             onSearch:
                                 (text) => context.read<TransactionsBloc>().add(
-                                  TransactionsSearchTransaction(
-                                    text,
-                                    transactions,
-                                  ),
+                                  TransactionsSearchTransaction(text),
                                 ),
                           ),
                           Visibility(
