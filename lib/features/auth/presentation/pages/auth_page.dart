@@ -1,4 +1,3 @@
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:simubank/simubank.dart';
 
 class AuthPage extends StatefulWidget {
@@ -69,7 +68,7 @@ class _AuthPageState extends State<AuthPage> {
                               controller: emailController,
                               hint: AppStrings.authEmailHint,
                               action: TextInputAction.next,
-                              inputFieldType: UIKitInputFieldType.EMAIL,
+                              inputType: TextInputType.emailAddress,
                               capitalization: TextCapitalization.none,
                               isAutofocus: true,
                               isEnabled: true,
@@ -87,7 +86,7 @@ class _AuthPageState extends State<AuthPage> {
                               controller: passwordController,
                               hint: AppStrings.authPasswordHint,
                               action: TextInputAction.next,
-                              inputFieldType: UIKitInputFieldType.PASSWORD,
+                              inputType: TextInputType.visiblePassword,
                               capitalization: TextCapitalization.none,
                               isAutofocus: true,
                               isEnabled: true,
