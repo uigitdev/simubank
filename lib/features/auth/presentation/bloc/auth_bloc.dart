@@ -26,7 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final obfuscationKey = await _getObfuscationKeyUseCase.call(NoData());
 
       if (obfuscationKey != null) {
-        final sessionId = await _authLoginUseCase.call(
+        final session = await _authLoginUseCase.call(
           AuthLoginEntity(
             email: event.email,
             password: StringObfuscator(
@@ -35,10 +35,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           ),
         );
 
-        if (sessionId != null && sessionId.isNotEmpty) {
-          await _setSessionUseCase.call(sessionId);
-          sessionState.setSessionId(sessionId);
-          emit(AuthAuthenticatedSuccess(sessionId));
+        if (session != null) {
+          await _setSessionUseCase.call(session.sessionId);
+          sessionState.setSessionId(session.sessionId);
+          emit(AuthAuthenticatedSuccess(session.sessionId));
         } else {
           emit(AuthAuthenticationFailed(message: AppStrings.authErrorInvalidSessionId));
         }
