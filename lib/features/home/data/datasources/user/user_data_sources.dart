@@ -5,7 +5,7 @@ abstract class UserDataSources {
   Future<bool> cacheUserProfileDetails(List<UserProfileDetailsModel> profileDetails){
     return Future.value(false);
   }
-  Future<bool> removeCachedUserProfileDetails() {
+  Future<bool> deleteCachedUserProfileDetails() {
     return Future.value(false);
   }
 }

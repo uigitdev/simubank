@@ -20,6 +20,17 @@ class AppProviders {
           return InitializeBloc(GetSessionUseCase());
         },
       ),
+      BlocProvider<UserBloc>(
+        create:
+            (context) => UserBloc(
+          GetUserProfileDetailsUseCase(
+            UserRepositoryImpl(UserRemoteDataSourcesImpl(), UserCacheDataSourcesImpl()),
+          ),
+          DeleteUserProfileUseCase(
+            UserRepositoryImpl(UserRemoteDataSourcesImpl(), UserCacheDataSourcesImpl()),
+          ),
+        ),
+      ),
       BlocProvider<AuthBloc>(
         create: (context) {
           return AuthBloc(
@@ -38,14 +49,6 @@ class AppProviders {
     RouteName.initialize => [],
     RouteName.unknown => [],
     RouteName.home => [
-      BlocProvider<UserBloc>(
-        create:
-            (context) => UserBloc(
-              GetUserProfileDetailsUseCase(
-                UserRepositoryImpl(UserRemoteDataSourcesImpl(), UserCacheDataSourcesImpl()),
-              ),
-            ),
-      ),
       BlocProvider<TransactionsBloc>(
         create:
             (context) => TransactionsBloc(

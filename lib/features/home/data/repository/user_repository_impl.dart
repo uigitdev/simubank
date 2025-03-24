@@ -28,4 +28,13 @@ class UserRepositoryImpl extends UserRepository {
       yield* _cacheDataSources.getUserProfileDetails();
     }
   }
+
+  @override
+  Future<bool> deleteUserProfileDetails() async {
+    try {
+      return await _cacheDataSources.deleteCachedUserProfileDetails();
+    } catch(_) {
+      return false;
+    }
+  }
 }

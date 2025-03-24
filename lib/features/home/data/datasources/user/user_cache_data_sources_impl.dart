@@ -37,10 +37,11 @@ class UserCacheDataSourcesImpl extends UserDataSources {
   }
 
   @override
-  Future<bool> removeCachedUserProfileDetails() async {
+  Future<bool> deleteCachedUserProfileDetails() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      return prefs.remove('${sessionState.sessionId}');
+      prefs.remove('${sessionState.sessionId}');
+      return true;
     } catch(_) {
       return false;
     }

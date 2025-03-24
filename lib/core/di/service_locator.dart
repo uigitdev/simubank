@@ -7,6 +7,7 @@ void setupLocators() {
   _setupUseCases();
   serviceLocator.registerLazySingleton<AppRoutes>(() => AppRoutes());
   serviceLocator.registerLazySingleton<AppProviders>(() => AppProviders());
+  serviceLocator.registerLazySingleton<EventDispatcher>(() => EventDispatcher());
 }
 
 void _setupUseCases() {

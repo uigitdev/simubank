@@ -94,3 +94,5 @@ export 'package:flutter_localizations/flutter_localizations.dart';
 export 'package:simubank/features/home/presentation/widgets/home_transaction_details.dart';
 export 'package:simubank/common/widgets/list_details_item.dart';
 export 'package:simubank/features/home/data/datasources/user/user_cache_data_sources_impl.dart';
+export 'package:simubank/core/dispatcher/event_dispatcher.dart';
+export 'package:simubank/features/home/domain/usecase/delete_user_profile_details_use_case.dart';
