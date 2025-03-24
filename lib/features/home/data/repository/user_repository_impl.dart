@@ -22,7 +22,7 @@ class UserRepositoryImpl extends UserRepository {
       }
 
       await for(final remoteProfileDetails in _remoteDataSources.getUserProfileDetails()) {
-        if (remoteProfileDetails != null) {
+        if (remoteProfileDetails != null && remoteProfileDetails.isNotEmpty) {
           await _cacheDataSources.cacheUserProfileDetails(remoteProfileDetails);
           yield remoteProfileDetails;
         }

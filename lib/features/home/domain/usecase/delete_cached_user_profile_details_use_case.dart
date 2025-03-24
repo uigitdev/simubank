@@ -1,9 +1,9 @@
 import 'package:simubank/simubank.dart';
 
-class DeleteUserProfileUseCase extends AppUseCase<bool, NoData> {
+class DeleteCachedUserProfileUseCase extends AppUseCase<bool, NoData> {
   final UserRepository _repository;
 
-  DeleteUserProfileUseCase(this._repository);
+  DeleteCachedUserProfileUseCase(this._repository);
 
   @override
   Future<bool> call(NoData _) async {

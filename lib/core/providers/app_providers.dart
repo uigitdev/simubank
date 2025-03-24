@@ -23,13 +23,19 @@ class AppProviders {
       BlocProvider<UserBloc>(
         create:
             (context) => UserBloc(
-          GetUserProfileDetailsUseCase(
-            UserRepositoryImpl(UserRemoteDataSourcesImpl(), UserCacheDataSourcesImpl()),
-          ),
-          DeleteUserProfileUseCase(
-            UserRepositoryImpl(UserRemoteDataSourcesImpl(), UserCacheDataSourcesImpl()),
-          ),
-        ),
+              GetUserProfileDetailsUseCase(
+                UserRepositoryImpl(
+                  UserRemoteDataSourcesImpl(),
+                  UserCacheDataSourcesImpl(),
+                ),
+              ),
+              DeleteCachedUserProfileUseCase(
+                UserRepositoryImpl(
+                  UserRemoteDataSourcesImpl(),
+                  UserCacheDataSourcesImpl(),
+                ),
+              ),
+            ),
       ),
       BlocProvider<AuthBloc>(
         create: (context) {
@@ -41,6 +47,24 @@ class AppProviders {
           );
         },
       ),
+      BlocProvider<TransactionsBloc>(
+        create:
+            (context) => TransactionsBloc(
+              GetTransactionUseCase(
+                TransactionRepositoryImpl(
+                  TransactionsRemoteDataSourcesImpl(),
+                  TransactionsCacheDataSourcesImpl(),
+                ),
+              ),
+              SearchTransactionUseCase(),
+              DeleteCachedTransactionsUseCase(
+                TransactionRepositoryImpl(
+                  TransactionsRemoteDataSourcesImpl(),
+                  TransactionsCacheDataSourcesImpl(),
+                ),
+              ),
+            ),
+      ),
     ];
   }
 
@@ -48,17 +72,7 @@ class AppProviders {
   List<BlocProvider> getProviderByRoute(RouteName route) => switch (route) {
     RouteName.initialize => [],
     RouteName.unknown => [],
-    RouteName.home => [
-      BlocProvider<TransactionsBloc>(
-        create:
-            (context) => TransactionsBloc(
-              GetTransactionUseCase(
-                TransactionRepositoryImpl(TransactionDataSourceImpl()),
-              ),
-              SearchTransactionUseCase(),
-            ),
-      ),
-    ],
+    RouteName.home => [],
     RouteName.auth => [],
   };
 }

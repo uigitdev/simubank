@@ -3,13 +3,30 @@ import 'package:simubank/simubank.dart';
 class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   final GetTransactionUseCase _getTransactionUseCase;
   final SearchTransactionUseCase _searchTransactionUseCase;
+  final DeleteCachedTransactionsUseCase _deleteCachedTransactionsUseCase;
+
+  final _eventDispatcher = EventDispatcher();
+  final _logoutEventController = StreamController<dynamic>();
 
   List<TransactionEntity> _allTransactions = [];
 
-  TransactionsBloc(this._getTransactionUseCase, this._searchTransactionUseCase)
-    : super(TransactionsNone()) {
+  TransactionsBloc(
+    this._getTransactionUseCase,
+    this._searchTransactionUseCase,
+    this._deleteCachedTransactionsUseCase,
+  ) : super(TransactionsNone()) {
     on<TransactionsGetTransactions>(_onGetGetTransactions);
     on<TransactionsSearchTransaction>(_onSearchTransactions);
+    _observeEventDispatcher();
+  }
+
+  void _observeEventDispatcher() {
+    _eventDispatcher.registerListener(_logoutEventController);
+    _logoutEventController.stream.listen((event) {
+      if (event is AuthLogout) {
+        _onDeleteCachedTransactions();
+      }
+    });
   }
 
   /// Fetches and listens for the transaction data
@@ -52,5 +69,19 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     } catch (error) {
       emit(TransactionLoadFailed(message: '$error'));
     }
+  }
+
+  void _onDeleteCachedTransactions() async {
+    try {
+      await _deleteCachedTransactionsUseCase.call(NoData());
+    } catch (_) {
+      // unused
+    }
+  }
+
+  @override
+  Future<void> close() async {
+    await _logoutEventController.close();
+    super.close();
   }
 }

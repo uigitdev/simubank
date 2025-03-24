@@ -78,13 +78,13 @@ export 'package:simubank/features/home/presentation/widgets/home_transaction_fil
 export 'package:simubank/features/home/domain/entities/transaction_entity.dart';
 export 'package:simubank/features/home/data/model/transaction_model.dart';
 export 'package:simubank/request/get_transactions_request.dart';
-export 'package:simubank/features/home/data/datasources/transactions/transaction_data_source.dart';
+export 'package:simubank/features/home/data/datasources/transactions/transactions_data_sources.dart';
 export 'package:simubank/features/home/domain/repository/transaction_repository.dart';
 export 'package:simubank/features/home/presentation/bloc/transactions/transactions_event.dart';
 export 'package:simubank/features/home/presentation/bloc/transactions/transactions_state.dart';
 export 'package:simubank/features/home/domain/usecase/get_transactions_use_case.dart';
 export 'package:simubank/features/home/presentation/bloc/transactions/transactions_bloc.dart';
-export 'package:simubank/features/home/data/datasources/transactions/transaction_data_source_impl.dart';
+export 'package:simubank/features/home/data/datasources/transactions/transactions_remote_data_sources_impl.dart';
 export 'package:simubank/features/home/data/repository/transaction_repository_impl.dart';
 export 'package:simubank/features/home/domain/entities/search_transaction_entity.dart';
 export 'package:simubank/features/home/domain/usecase/search_transaction_use_case.dart';
@@ -95,4 +95,6 @@ export 'package:simubank/features/home/presentation/widgets/home_transaction_det
 export 'package:simubank/common/widgets/list_details_item.dart';
 export 'package:simubank/features/home/data/datasources/user/user_cache_data_sources_impl.dart';
 export 'package:simubank/core/dispatcher/event_dispatcher.dart';
-export 'package:simubank/features/home/domain/usecase/delete_user_profile_details_use_case.dart';
+export 'package:simubank/features/home/domain/usecase/delete_cached_user_profile_details_use_case.dart';
+export 'package:simubank/features/home/data/datasources/transactions/transactions_cache_data_sources_impl.dart';
+export 'package:simubank/features/home/domain/usecase/delete_cached_transactions_use_case.dart';
