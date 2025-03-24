@@ -98,3 +98,5 @@ export 'package:simubank/core/dispatcher/event_dispatcher.dart';
 export 'package:simubank/features/home/domain/usecase/delete_cached_user_profile_details_use_case.dart';
 export 'package:simubank/features/home/data/datasources/transactions/transactions_cache_data_sources_impl.dart';
 export 'package:simubank/features/home/domain/usecase/delete_cached_transactions_use_case.dart';
+export 'package:sqflite/sqflite.dart';
+export 'package:simubank/features/home/data/datasources/transactions/transactions_database_helper.dart';

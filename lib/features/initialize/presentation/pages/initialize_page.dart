@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:simubank/simubank.dart';
 
 class InitializePage extends StatefulWidget {

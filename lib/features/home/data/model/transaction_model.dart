@@ -1,6 +1,7 @@
 import 'package:simubank/simubank.dart';
 
 class TransactionModel extends TransactionEntity {
+
   TransactionModel({
     required super.id,
     required super.userId,
@@ -27,4 +28,18 @@ class TransactionModel extends TransactionEntity {
         toAccount: json['to_account'],
         category: json['category'],
       );
+
+  Map<String, dynamic> toJson(String sessionId) => {
+    'id': id,
+    'userId': userId,
+    'date': date.toIso8601String(),
+    'merchant': merchant,
+    'amount': amount,
+    'currency': currency,
+    'description': description,
+    'from_account': fromAccount,
+    'to_account': toAccount,
+    'category': category,
+    'sessionId': sessionId,
+  };
 }
