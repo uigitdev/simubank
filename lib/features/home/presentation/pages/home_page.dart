@@ -28,9 +28,11 @@ class _HomePageState extends State<HomePage> with AppUIHelper {
 
   @override
   Widget build(BuildContext context) {
+    // Listen user profile states.
     return BlocListener<UserBloc, UserState>(
       listener: (context, state) {
         if (state is UserGetProfileDetailsFailed) {
+          // Show snackbar if there is no user profile.
           showErrorSnackbar(context, state.message);
         }
       },
@@ -41,21 +43,25 @@ class _HomePageState extends State<HomePage> with AppUIHelper {
             child: Text(AppStrings.transactions),
           ),
           actions: [
+            // Listen logout states.
             BlocListener<AuthBloc, AuthState>(
               listener: (context, state) {
                 if (state is AuthLogoutSuccess) {
+                  // Start initialize page if logout was success.
                   serviceLocator<AppRoutes>().go(RouteName.initialize);
                 } else if (state is AuthLogoutFailed) {
+                  // Show error snackbar if logout failed.
                   showErrorSnackbar(context, state.message);
                 }
               },
+              // Show logout button on appBar.
               child: Semantics(
                 label: AppStrings.logout,
                 child: IconButton(
                   tooltip: AppStrings.logout,
                   onPressed: () => context.read<AuthBloc>().add(AuthLogout()),
                   icon: Icon(
-                    Icons.exit_to_app_rounded,
+                    AppIcons.exit,
                     color: Theme.of(context).appBarTheme.actionsIconTheme?.color,
                   ),
                 ),
@@ -72,6 +78,7 @@ class _HomePageState extends State<HomePage> with AppUIHelper {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Show welcome title with username.
                 Padding(
                   padding: EdgeInsets.symmetric(
                     vertical: AppSizes(context).paddingVertical,
@@ -82,6 +89,7 @@ class _HomePageState extends State<HomePage> with AppUIHelper {
                   builder: (context, state) {
                     switch (state) {
                       case TransactionsNone _:
+                        // Show progress indicator if transaction get is in progress.
                         return Expanded(
                           child: Center(child: CupertinoActivityIndicator()),
                         );
@@ -90,6 +98,7 @@ class _HomePageState extends State<HomePage> with AppUIHelper {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
+                              // Show transaction filter box.
                               HomeTransactionFilterBox(
                                 controller: filterController,
                                 onSearch: (text) {
@@ -98,6 +107,9 @@ class _HomePageState extends State<HomePage> with AppUIHelper {
                                   );
                                 },
                               ),
+                              // Show the transaction list if it is not empty
+                              // otherwise, display a centered message indicating
+                              // that no transactions were found.
                               Expanded(
                                 child: Visibility(
                                   visible: params.transactions.isNotEmpty,
@@ -113,6 +125,7 @@ class _HomePageState extends State<HomePage> with AppUIHelper {
                           ),
                         );
                       case TransactionLoadFailed _:
+                        // Show empty transaction title if loading failed.
                         return Expanded(
                           child: Center(
                             child: Text(AppStrings.transactionsEmpty),

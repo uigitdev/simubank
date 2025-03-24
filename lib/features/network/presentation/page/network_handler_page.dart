@@ -15,6 +15,9 @@ class _NetworkHandlerPageState extends State<NetworkHandlerPage>
 
   @override
   void initState() {
+    /// Check listen Internet connection
+    ///
+    /// If there is no internet connection, show a snackbar.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       subscription = Connectivity().onConnectivityChanged.listen((results) {
         if (results.contains(ConnectivityResult.none) && mounted) {

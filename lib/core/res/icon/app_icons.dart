@@ -11,4 +11,5 @@ class AppIcons{
   static String get  search => '${prefix}search.svg';
 
   static IconData get close => Icons.close_rounded;
+  static IconData get exit => Icons.exit_to_app_rounded;
 }
