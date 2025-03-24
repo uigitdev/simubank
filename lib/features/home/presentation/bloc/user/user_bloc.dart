@@ -2,9 +2,21 @@ import 'package:simubank/simubank.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final GetUserProfileDetailsUseCase _getUserProfileDetailsUseCase;
+  final DeleteCachedUserProfileUseCase _deleteUserProfileUseCase;
 
-  UserBloc(this._getUserProfileDetailsUseCase) : super(UserNone()) {
+  StreamSubscription<dynamic>? _eventSubscription;
+
+  UserBloc(this._getUserProfileDetailsUseCase, this._deleteUserProfileUseCase) : super(UserNone()) {
     on<UserGetProfileDetails>(_onGetProfileDetails);
+    _observeEventDispatcher();
+  }
+
+  void _observeEventDispatcher() {
+    _eventSubscription = EventDispatcher().stream.listen((event) {
+      if (event is AuthLogout) {
+        _onDeleteCachedUserProfileDetails();
+      }
+    });
   }
 
   /// Starts listening to profile details.
@@ -28,5 +40,19 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     } catch (error) {
       emit(UserGetProfileDetailsFailed(message: '$error'));
     }
+  }
+
+  void _onDeleteCachedUserProfileDetails() async {
+    try {
+      await _deleteUserProfileUseCase.call(NoData());
+    } catch (_) {
+      // unused
+    }
+  }
+
+  @override
+  Future<void> close() async {
+    await _eventSubscription?.cancel();
+    super.close();
   }
 }

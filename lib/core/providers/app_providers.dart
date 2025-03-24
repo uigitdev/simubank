@@ -41,19 +41,37 @@ class AppProviders {
       BlocProvider<UserBloc>(
         create:
             (context) => UserBloc(
-              GetUserProfileDetailsUseCase(
-                UserRepositoryImpl(UserDataSourcesImpl()),
-              ),
+          GetUserProfileDetailsUseCase(
+            UserRepositoryImpl(
+              UserRemoteDataSourcesImpl(),
+              UserCacheDataSourcesImpl(),
             ),
+          ),
+          DeleteCachedUserProfileUseCase(
+            UserRepositoryImpl(
+              UserRemoteDataSourcesImpl(),
+              UserCacheDataSourcesImpl(),
+            ),
+          ),
+        ),
       ),
       BlocProvider<TransactionsBloc>(
         create:
             (context) => TransactionsBloc(
-              GetTransactionUseCase(
-                TransactionRepositoryImpl(TransactionDataSourceImpl()),
-              ),
-              SearchTransactionUseCase(),
+          GetTransactionUseCase(
+            TransactionRepositoryImpl(
+              TransactionsRemoteDataSourcesImpl(),
+              TransactionsCacheDataSourcesImpl(),
             ),
+          ),
+          SearchTransactionUseCase(),
+          DeleteCachedTransactionsUseCase(
+            TransactionRepositoryImpl(
+              TransactionsRemoteDataSourcesImpl(),
+              TransactionsCacheDataSourcesImpl(),
+            ),
+          ),
+        ),
       ),
     ],
     RouteName.auth => [],
