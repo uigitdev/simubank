@@ -1,13 +1,20 @@
 import 'package:simubank/simubank.dart';
 
 class HomeTransactionList extends StatelessWidget {
+  final ScrollController controller;
+
   final List<TransactionEntity> transactions;
 
-  const HomeTransactionList(this.transactions, {super.key});
+  const HomeTransactionList(
+    this.transactions, {
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      controller: controller,
       itemCount: transactions.length,
       shrinkWrap: true,
       separatorBuilder: (context, position) {

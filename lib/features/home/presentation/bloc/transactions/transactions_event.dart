@@ -9,3 +9,5 @@ class TransactionsSearchTransaction extends TransactionsEvent {
 
   TransactionsSearchTransaction(this.searched);
 }
+
+class TransactionsLoadMore extends TransactionsEvent {}

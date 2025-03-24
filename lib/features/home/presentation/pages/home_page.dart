@@ -10,9 +10,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with AppUIHelper {
   final filterController = TextEditingController();
+  final scrollController = ScrollController();
 
   @override
   void initState() {
+    scrollController.addListener(_onScroll);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<UserBloc>().add(UserGetProfileDetails());
       context.read<TransactionsBloc>().add(TransactionsGetTransactions());
@@ -23,7 +25,14 @@ class _HomePageState extends State<HomePage> with AppUIHelper {
   @override
   void dispose() {
     filterController.dispose();
+    scrollController.dispose();
     super.dispose();
+  }
+
+  void _onScroll() {
+    if (scrollController.position.pixels >= scrollController.position.maxScrollExtent - 100) {
+      context.read<TransactionsBloc>().add(TransactionsLoadMore());
+    }
   }
 
   @override
@@ -117,6 +126,7 @@ class _HomePageState extends State<HomePage> with AppUIHelper {
                                     child: Text(AppStrings.transactionsEmpty),
                                   ),
                                   child: HomeTransactionList(
+                                    controller: scrollController,
                                     params.transactions,
                                   ),
                                 ),
