@@ -15,7 +15,11 @@ class UserRepositoryImpl extends UserRepository {
   @override
   Stream<List<UserProfileDetailsEntity>?> getUserProfileDetails() async* {
     try {
-      yield* _cacheDataSources.getUserProfileDetails();
+      await for (final cachedProfileDetails in _cacheDataSources.getUserProfileDetails()) {
+        if(cachedProfileDetails != null && cachedProfileDetails.isNotEmpty) {
+          yield cachedProfileDetails;
+        }
+      }
 
       await for(final remoteProfileDetails in _remoteDataSources.getUserProfileDetails()) {
         if (remoteProfileDetails != null) {
