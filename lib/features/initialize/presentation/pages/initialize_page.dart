@@ -34,7 +34,13 @@ class _InitializePageState extends State<InitializePage> {
       },
       child: Scaffold(
         appBar: AppEmptyAppBar(),
-        body: Center(child: CupertinoActivityIndicator()),
+        body: Center(
+          child: SizedBox(
+            width: AppSizes(context).appLogoSize,
+            height: AppSizes(context).appLogoSize,
+            child: Placeholder(),
+          ),
+        ),
       ),
     );
   }
