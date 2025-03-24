@@ -6,11 +6,11 @@ class UserRepositoryImpl extends UserRepository {
   UserRepositoryImpl(this._dataSources);
 
   @override
-  Future<List<UserProfileDetailsEntity>?> getUserProfileDetails() async {
+  Stream<List<UserProfileDetailsEntity>?> getUserProfileDetails() async* {
     try {
-      return await _dataSources.getUserProfileDetails();
+      yield* _dataSources.getUserProfileDetails();
     } catch (_) {
-      return null;
+      yield null;
     }
   }
 }

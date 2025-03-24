@@ -9,12 +9,12 @@ class GetUserProfileDetailsUseCase
   @override
   Stream<UserProfileDetailsEntity?> call(NoData params) async* {
     try {
-      final userProfileDetailsList = await _repository.getUserProfileDetails();
-
-      if (userProfileDetailsList != null && userProfileDetailsList.isNotEmpty) {
-        yield userProfileDetailsList.first;
-      } else {
-        yield null;
+      await for (final userProfileDetailsList in _repository.getUserProfileDetails()) {
+        if (userProfileDetailsList != null && userProfileDetailsList.isNotEmpty) {
+          yield userProfileDetailsList.first;
+        } else {
+          yield null;
+        }
       }
     } catch (_) {
       yield null;
