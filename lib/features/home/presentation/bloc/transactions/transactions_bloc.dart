@@ -5,8 +5,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   final SearchTransactionUseCase _searchTransactionUseCase;
   final DeleteCachedTransactionsUseCase _deleteCachedTransactionsUseCase;
 
-  final _eventDispatcher = EventDispatcher();
-  final _logoutEventController = StreamController<dynamic>();
+  StreamSubscription<dynamic>? _eventSubscription;
 
   List<TransactionEntity> _allTransactions = [];
 
@@ -21,8 +20,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   }
 
   void _observeEventDispatcher() {
-    _eventDispatcher.registerListener(_logoutEventController);
-    _logoutEventController.stream.listen((event) {
+    _eventSubscription = EventDispatcher().stream.listen((event) {
       if (event is AuthLogout) {
         _onDeleteCachedTransactions();
       }
@@ -81,7 +79,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
 
   @override
   Future<void> close() async {
-    await _logoutEventController.close();
+    await _eventSubscription?.cancel();
     super.close();
   }
 }

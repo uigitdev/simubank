@@ -7,15 +7,13 @@ class EventDispatcher {
 
   factory EventDispatcher() => _instance;
 
-  final _listeners = <StreamController<dynamic>>[];
-
-  void registerListener(StreamController<dynamic> listener) {
-    _listeners.add(listener);
-  }
+  final _eventController = StreamController<dynamic>.broadcast();
 
   void dispatchEvent(dynamic event) {
-    for (final listener in _listeners) {
-      listener.add(event);
+    if (!_eventController.isClosed) {
+      _eventController.add(event);
     }
   }
+
+  Stream<dynamic> get stream => _eventController.stream;
 }

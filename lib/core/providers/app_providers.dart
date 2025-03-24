@@ -20,23 +20,6 @@ class AppProviders {
           return InitializeBloc(GetSessionUseCase());
         },
       ),
-      BlocProvider<UserBloc>(
-        create:
-            (context) => UserBloc(
-              GetUserProfileDetailsUseCase(
-                UserRepositoryImpl(
-                  UserRemoteDataSourcesImpl(),
-                  UserCacheDataSourcesImpl(),
-                ),
-              ),
-              DeleteCachedUserProfileUseCase(
-                UserRepositoryImpl(
-                  UserRemoteDataSourcesImpl(),
-                  UserCacheDataSourcesImpl(),
-                ),
-              ),
-            ),
-      ),
       BlocProvider<AuthBloc>(
         create: (context) {
           return AuthBloc(
@@ -47,24 +30,6 @@ class AppProviders {
           );
         },
       ),
-      BlocProvider<TransactionsBloc>(
-        create:
-            (context) => TransactionsBloc(
-              GetTransactionUseCase(
-                TransactionRepositoryImpl(
-                  TransactionsRemoteDataSourcesImpl(),
-                  TransactionsCacheDataSourcesImpl(),
-                ),
-              ),
-              SearchTransactionUseCase(),
-              DeleteCachedTransactionsUseCase(
-                TransactionRepositoryImpl(
-                  TransactionsRemoteDataSourcesImpl(),
-                  TransactionsCacheDataSourcesImpl(),
-                ),
-              ),
-            ),
-      ),
     ];
   }
 
@@ -72,7 +37,43 @@ class AppProviders {
   List<BlocProvider> getProviderByRoute(RouteName route) => switch (route) {
     RouteName.initialize => [],
     RouteName.unknown => [],
-    RouteName.home => [],
+    RouteName.home => [
+      BlocProvider<UserBloc>(
+        create:
+            (context) => UserBloc(
+          GetUserProfileDetailsUseCase(
+            UserRepositoryImpl(
+              UserRemoteDataSourcesImpl(),
+              UserCacheDataSourcesImpl(),
+            ),
+          ),
+          DeleteCachedUserProfileUseCase(
+            UserRepositoryImpl(
+              UserRemoteDataSourcesImpl(),
+              UserCacheDataSourcesImpl(),
+            ),
+          ),
+        ),
+      ),
+      BlocProvider<TransactionsBloc>(
+        create:
+            (context) => TransactionsBloc(
+          GetTransactionUseCase(
+            TransactionRepositoryImpl(
+              TransactionsRemoteDataSourcesImpl(),
+              TransactionsCacheDataSourcesImpl(),
+            ),
+          ),
+          SearchTransactionUseCase(),
+          DeleteCachedTransactionsUseCase(
+            TransactionRepositoryImpl(
+              TransactionsRemoteDataSourcesImpl(),
+              TransactionsCacheDataSourcesImpl(),
+            ),
+          ),
+        ),
+      ),
+    ],
     RouteName.auth => [],
   };
 }

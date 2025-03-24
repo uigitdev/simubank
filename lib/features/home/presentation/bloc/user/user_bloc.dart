@@ -4,8 +4,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   final GetUserProfileDetailsUseCase _getUserProfileDetailsUseCase;
   final DeleteCachedUserProfileUseCase _deleteUserProfileUseCase;
 
-  final _eventDispatcher = EventDispatcher();
-  final _logoutEventController = StreamController<dynamic>();
+  StreamSubscription<dynamic>? _eventSubscription;
 
   UserBloc(this._getUserProfileDetailsUseCase, this._deleteUserProfileUseCase) : super(UserNone()) {
     on<UserGetProfileDetails>(_onGetProfileDetails);
@@ -13,8 +12,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }
 
   void _observeEventDispatcher() {
-    _eventDispatcher.registerListener(_logoutEventController);
-    _logoutEventController.stream.listen((event) {
+    _eventSubscription = EventDispatcher().stream.listen((event) {
       if (event is AuthLogout) {
         _onDeleteCachedUserProfileDetails();
       }
@@ -54,7 +52,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   @override
   Future<void> close() async {
-    await _logoutEventController.close();
+    await _eventSubscription?.cancel();
     super.close();
   }
 }
