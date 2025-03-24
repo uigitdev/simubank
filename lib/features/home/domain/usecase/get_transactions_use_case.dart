@@ -9,7 +9,9 @@ class GetTransactionUseCase
   @override
   Stream<List<TransactionEntity>> call(NoData _) async* {
     try {
-      yield await _repository.getTransactions() ?? [];
+      await for (final transactions in _repository.getTransactions()) {
+        yield transactions ?? [];
+      }
     } catch (e) {
       yield [];
     }

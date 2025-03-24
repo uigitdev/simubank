@@ -6,11 +6,11 @@ class TransactionRepositoryImpl extends TransactionRepository {
   TransactionRepositoryImpl(this._dataSource);
 
   @override
-  Future<List<TransactionEntity>?> getTransactions() async {
+  Stream<List<TransactionEntity>?> getTransactions() async* {
     try {
-      return await _dataSource.getTransactions();
-    } catch (e) {
-      return null;
+      yield* _dataSource.getTransactions();
+    } catch (_) {
+      yield null;
     }
   }
 }

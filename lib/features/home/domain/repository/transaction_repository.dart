@@ -1,5 +1,5 @@
 import 'package:simubank/simubank.dart';
 
 abstract class TransactionRepository {
-  Future<List<TransactionEntity>?> getTransactions();
+  Stream<List<TransactionEntity>?> getTransactions();
 }
