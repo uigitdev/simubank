@@ -8,6 +8,9 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   StreamSubscription<dynamic>? _eventSubscription;
 
   List<TransactionEntity> _allTransactions = [];
+  final _transactionsToShow = <int, TransactionEntity>{};
+  final _initialLoadCount = 10;
+  final _loadMoreCount = 4;
 
   TransactionsBloc(
     this._getTransactionUseCase,
@@ -16,6 +19,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   ) : super(TransactionsNone()) {
     on<TransactionsGetTransactions>(_onGetGetTransactions);
     on<TransactionsSearchTransaction>(_onSearchTransactions);
+    on<TransactionsLoadMore>(_onLoadMore);
     _observeEventDispatcher();
   }
 
@@ -25,6 +29,21 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
         _onDeleteCachedTransactions();
       }
     });
+  }
+
+  void _onLoadMore(
+    TransactionsLoadMore event,
+    Emitter<TransactionsState> emit,
+  ) async {
+    try {
+
+      for(var transaction in _allTransactions.getSublist(_transactionsToShow.length, _loadMoreCount)){
+        _transactionsToShow.putIfAbsent(transaction.id, () => transaction);
+      }
+      emit(TransactionsLoadedTransactions(_transactionsToShow.values.toList()));
+    } catch (_) {
+      // unused
+    }
   }
 
   /// Fetches and listens for the transaction data
@@ -39,7 +58,12 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     try {
       await for (final transactions in _getTransactionUseCase.call(NoData())) {
         _allTransactions = transactions;
-        emit(TransactionsLoadedTransactions(transactions));
+
+        for(var transaction in _allTransactions.getSublist(_transactionsToShow.length, _initialLoadCount)){
+          _transactionsToShow.putIfAbsent(transaction.id, () => transaction);
+        }
+
+        emit(TransactionsLoadedTransactions(_transactionsToShow.values.toList()));
       }
     } catch (error) {
       emit(TransactionLoadFailed(message: '$error'));
