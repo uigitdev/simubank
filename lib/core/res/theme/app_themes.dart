@@ -90,6 +90,7 @@ class AppThemes {
         fontWeight: FontWeight.bold,
       ),
     ),
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.white),
   );
 
   ThemeData get dark => ThemeData.dark().copyWith(
@@ -177,5 +178,6 @@ class AppThemes {
         fontWeight: FontWeight.bold,
       ),
     ),
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: Color(0xFF171717)),
   );
 }

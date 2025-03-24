@@ -40,4 +40,65 @@ mixin AppUIHelper {
     );
     return formatter.format(amount);
   }
+
+  void showCustomBottomSheet({required BuildContext context, required Widget child}) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Theme.of(context).bottomSheetTheme.backgroundColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(AppSizes(context).bottomSheetRadius),
+        ),
+      ),
+      builder: (context) => Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.viewInsetsOf(context).bottom
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: EdgeInsets.all(
+                  AppSizes(context).paddingVertical
+                ),
+                child: IconButton(
+                  icon: Icon(
+                    AppIcons.close,
+                    color: Theme.of(context).primaryColor,
+
+                  ),
+                  onPressed: () {
+                    if(context.mounted) {
+                      Navigator.of(context).pop();
+                    }
+                  },
+                ),
+              ),
+            ),
+            Flexible(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  bottom: AppSizes(context).paddingPageBottom,
+                ),
+                child: child,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  TextStyle amountTextStyle(BuildContext context, double amount) {
+    return TextStyle(
+      color: amount > 0
+          ? Theme.of(context).colorScheme.tertiary
+          : Theme.of(context).colorScheme.error,
+      fontSize: Theme.of(context,).listTileTheme.leadingAndTrailingTextStyle?.fontSize,
+      fontWeight: Theme.of(context,).listTileTheme.leadingAndTrailingTextStyle?.fontWeight,
+    );
+  }
 }

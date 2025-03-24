@@ -46,5 +46,12 @@ class AppStrings{
   static final String snackBarNoInternet = 'No Internet Connection';
 
   static final String transactions = 'Transactions';
+  static final String transactionDetails = 'Transaction details';
+
+  static final String transactionDetailsDate = 'Date';
+  static final String transactionDetailsMerchant = 'Merchant';
+  static final String transactionDetailsCategory = 'Category';
+  static final String transactionDetailsToAccount = 'To Account';
+
   static final String logout = 'Logout';
 }

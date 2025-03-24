@@ -23,7 +23,7 @@ class _HomeTransactionFilterBoxState extends State<HomeTransactionFilterBox> {
         Padding(
           padding: EdgeInsets.only(right: AppSizes(context).paddingHorizontal),
           child: SvgPicture.asset(
-            AppIcon.filter,
+            AppIcons.filter,
             color: Theme.of(context).primaryColor,
             width: AppSizes(context).filterIconSize,
             height: AppSizes(context).filterIconSize,
@@ -42,7 +42,7 @@ class _HomeTransactionFilterBoxState extends State<HomeTransactionFilterBox> {
               isAutofocus: true,
               isEnabled: true,
               inputHeight: AppSizes(context).filterInputHeight,
-              iconAsset: AppIcon.search,
+              iconAsset: AppIcons.search,
               onChanged: widget.onSearch,
               onSubmitted: widget.onSearch,
             ),

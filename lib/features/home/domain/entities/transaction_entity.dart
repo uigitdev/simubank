@@ -5,7 +5,7 @@ class TransactionEntity {
   final String merchant;
   final int amount;
   final String currency;
-  final String? description;
+  final String description;
   final String fromAccount;
   final String toAccount;
   final String category;

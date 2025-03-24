@@ -91,3 +91,5 @@ export 'package:simubank/features/home/domain/usecase/search_transaction_use_cas
 export 'package:simubank/features/home/presentation/widgets/home_transaction_list_item.dart';
 export 'package:simubank/features/home/presentation/widgets/home_transaction_list.dart';
 export 'package:flutter_localizations/flutter_localizations.dart';
+export 'package:simubank/features/home/presentation/widgets/home_transaction_details.dart';
+export 'package:simubank/common/widgets/list_details_item.dart';
