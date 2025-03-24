@@ -42,7 +42,7 @@ class AppProviders {
         create:
             (context) => UserBloc(
               GetUserProfileDetailsUseCase(
-                UserRepositoryImpl(UserDataSourcesImpl()),
+                UserRepositoryImpl(UserRemoteDataSourcesImpl(), UserCacheDataSourcesImpl()),
               ),
             ),
       ),

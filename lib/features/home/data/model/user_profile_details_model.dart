@@ -15,4 +15,11 @@ class UserProfileDetailsModel extends UserProfileDetailsEntity {
         name: json['name'],
         profilePicture: json['profile_picture'],
       );
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'email': email,
+    'name': name,
+    'profile_picture': profilePicture,
+  };
 }
