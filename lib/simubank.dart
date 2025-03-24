@@ -88,3 +88,8 @@ export 'package:simubank/features/home/data/datasources/transaction_data_source_
 export 'package:simubank/features/home/data/repository/transaction_repository_impl.dart';
 export 'package:simubank/features/home/domain/entities/search_transaction_entity.dart';
 export 'package:simubank/features/home/domain/usecase/search_transaction_use_case.dart';
+export 'package:simubank/features/home/presentation/widgets/home_transaction_list_item.dart';
+export 'package:simubank/features/home/presentation/widgets/home_transaction_list.dart';
+export 'package:flutter_localizations/flutter_localizations.dart';
+export 'package:simubank/features/home/presentation/widgets/home_transaction_details.dart';
+export 'package:simubank/common/widgets/list_details_item.dart';

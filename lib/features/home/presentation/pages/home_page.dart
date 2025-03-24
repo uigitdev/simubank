@@ -49,11 +49,15 @@ class _HomePageState extends State<HomePage> with AppUIHelper {
                   showErrorSnackbar(context, state.message);
                 }
               },
-              child: IconButton(
-                onPressed: () => context.read<AuthBloc>().add(AuthLogout()),
-                icon: Icon(
-                  Icons.exit_to_app_rounded,
-                  color: Theme.of(context).appBarTheme.actionsIconTheme?.color,
+              child: Semantics(
+                label: AppStrings.logout,
+                child: IconButton(
+                  tooltip: AppStrings.logout,
+                  onPressed: () => context.read<AuthBloc>().add(AuthLogout()),
+                  icon: Icon(
+                    Icons.exit_to_app_rounded,
+                    color: Theme.of(context).appBarTheme.actionsIconTheme?.color,
+                  ),
                 ),
               ),
             ),
@@ -76,53 +80,45 @@ class _HomePageState extends State<HomePage> with AppUIHelper {
                 ),
                 BlocBuilder<TransactionsBloc, TransactionsState>(
                   builder: (context, state) {
-                    final transactions = <TransactionEntity>[];
-                    if (state is TransactionsNone) {
-                      return Expanded(
-                        child: Center(child: CupertinoActivityIndicator()),
-                      );
-                    } else if (state is TransactionsLoadedTransactions) {
-                      transactions.addAll(state.transactions);
-                    }
-
-                    return Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          HomeTransactionFilterBox(
-                            controller: filterController,
-                            onSearch:
-                                (text) => context.read<TransactionsBloc>().add(
-                                  TransactionsSearchTransaction(text),
-                                ),
-                          ),
-                          Visibility(
-                            visible: transactions.isNotEmpty,
-                            replacement: Expanded(
-                              child: Center(
-                                child: Text(AppStrings.transactionsEmpty),
-                              ),
-                            ),
-                            child: Expanded(
-                              child: ListView.separated(
-                                itemCount: transactions.length,
-                                shrinkWrap: true,
-                                separatorBuilder: (context, position) {
-                                  return Container(
-                                    width: double.maxFinite,
-                                    height: 0.5,
-                                    color: Theme.of(context).disabledColor,
+                    switch (state) {
+                      case TransactionsNone _:
+                        return Expanded(
+                          child: Center(child: CupertinoActivityIndicator()),
+                        );
+                      case TransactionsLoadedTransactions params:
+                        return Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              HomeTransactionFilterBox(
+                                controller: filterController,
+                                onSearch: (text) {
+                                  context.read<TransactionsBloc>().add(
+                                    TransactionsSearchTransaction(text),
                                   );
                                 },
-                                itemBuilder: (context, position) {
-                                  return Text('item');
-                                },
                               ),
-                            ),
+                              Expanded(
+                                child: Visibility(
+                                  visible: params.transactions.isNotEmpty,
+                                  replacement: Center(
+                                    child: Text(AppStrings.transactionsEmpty),
+                                  ),
+                                  child: HomeTransactionList(
+                                    params.transactions,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    );
+                        );
+                      case TransactionLoadFailed _:
+                        return Expanded(
+                          child: Center(
+                            child: Text(AppStrings.transactionsEmpty),
+                          ),
+                        );
+                    }
                   },
                 ),
               ],

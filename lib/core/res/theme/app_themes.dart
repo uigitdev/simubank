@@ -72,7 +72,25 @@ class AppThemes {
     ),
     dividerColor: Colors.grey[600],
     snackBarTheme: SnackBarThemeData(elevation: 0),
-    colorScheme: ColorScheme.of(context).copyWith(error: Color(0xFFDC2626)),
+    colorScheme: ColorScheme.of(
+      context,
+    ).copyWith(error: Color(0xFFDC2626), tertiary: Colors.green),
+    listTileTheme: ListTileThemeData(
+      titleTextStyle: TextStyle(
+        color: Colors.black,
+        fontSize: AppSizes(context).titleMedium,
+        fontWeight: FontWeight.normal,
+      ),
+      subtitleTextStyle: TextStyle(
+        color: Colors.black,
+        fontSize: AppSizes(context).titleNormal,
+      ),
+      leadingAndTrailingTextStyle: TextStyle(
+        fontSize: AppSizes(context).titleNormal,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.white),
   );
 
   ThemeData get dark => ThemeData.dark().copyWith(
@@ -142,6 +160,24 @@ class AppThemes {
     ),
     dividerColor: Colors.grey[600],
     snackBarTheme: SnackBarThemeData(elevation: 0),
-    colorScheme: ColorScheme.of(context).copyWith(error: Color(0xFFDC2626)),
+    colorScheme: ColorScheme.of(
+      context,
+    ).copyWith(error: Color(0xFFDC2626), tertiary: Colors.green),
+    listTileTheme: ListTileThemeData(
+      titleTextStyle: TextStyle(
+        color: Colors.white,
+        fontSize: AppSizes(context).titleMedium,
+        fontWeight: FontWeight.normal,
+      ),
+      subtitleTextStyle: TextStyle(
+        color: Colors.grey[600],
+        fontSize: AppSizes(context).titleNormal,
+      ),
+      leadingAndTrailingTextStyle: TextStyle(
+        fontSize: AppSizes(context).titleNormal,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: Color(0xFF171717)),
   );
 }

@@ -1,5 +1,3 @@
-import 'package:simubank/simubank.dart';
-
 sealed class TransactionsEvent {
   const TransactionsEvent();
 }

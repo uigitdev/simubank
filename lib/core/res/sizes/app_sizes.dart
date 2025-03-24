@@ -7,6 +7,7 @@ class AppSizes {
 
   double get paddingPageBottom => 25;
   double get paddingHorizontal => 15;
+  double get paddingSmallVertical => 5;
   double get paddingVertical => 15;
   double get paddingAuthHorizontal => 40;
   double get paddingHomeHorizontal => 40;
@@ -22,6 +23,8 @@ class AppSizes {
   double get titleLarge => 30;
   double get titleLarge2 => 25;
 
+  double get bottomSheetRadius => 12;
+  double get tileRadius => 6;
   double get inputRadius => 8;
   double get filterInputHeight => 40;
   double get inputHeight => 50;

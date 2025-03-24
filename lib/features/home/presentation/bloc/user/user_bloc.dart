@@ -7,17 +7,23 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserGetProfileDetails>(_onGetProfileDetails);
   }
 
+  /// Starts listening to profile details.
+  ///
+  /// If profile details exist, updates the state
+  /// otherwise, emits an error event.
   void _onGetProfileDetails(
     UserGetProfileDetails event,
     Emitter<UserState> emit,
   ) async {
     try {
-      final profile = await _getUserProfileDetailsUseCase.call(NoData());
-
-      if (profile != null) {
-        emit(UserGetProfileDetailsSuccess(profile));
-      } else {
-        emit(UserGetProfileDetailsFailed(message: AppStrings.profileNotFound));
+      await for (final profile in _getUserProfileDetailsUseCase.call(NoData())) {
+        if (profile != null) {
+          emit(UserGetProfileDetailsSuccess(profile));
+        } else {
+          emit(
+            UserGetProfileDetailsFailed(message: AppStrings.profileNotFound),
+          );
+        }
       }
     } catch (error) {
       emit(UserGetProfileDetailsFailed(message: '$error'));

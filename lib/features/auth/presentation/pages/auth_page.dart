@@ -101,8 +101,8 @@ class _AuthPageState extends State<AuthPage> with AppUIHelper {
                                     capitalization: TextCapitalization.none,
                                     isAutofocus: true,
                                     isEnabled: !isInProgress,
-                                    iconAsset: AppIcon.password,
-                                    showPasswordIconAsset: AppIcon.showPassword,
+                                    iconAsset: AppIcons.password,
+                                    showPasswordIconAsset: AppIcons.showPassword,
                                     onSubmitted:
                                         (text) => _loginSubmitFunction(),
                                   ),

@@ -1,5 +1,20 @@
+import 'package:simubank/simubank.dart';
+
 class AppStrings{
   AppStrings._();
+
+  static Locale get locale => Locale('hu');
+
+  static List<Locale> get supportedLocale => [
+    Locale('en'),
+    Locale('hu'),
+  ];
+
+  static Iterable<LocalizationsDelegate> get delegates => const [
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+  ];
 
   static final String appName = 'SimuBank';
   static final String appNameLabel = 'Digital Banking';
@@ -31,4 +46,12 @@ class AppStrings{
   static final String snackBarNoInternet = 'No Internet Connection';
 
   static final String transactions = 'Transactions';
+  static final String transactionDetails = 'Transaction details';
+
+  static final String transactionDetailsDate = 'Date';
+  static final String transactionDetailsMerchant = 'Merchant';
+  static final String transactionDetailsCategory = 'Category';
+  static final String transactionDetailsToAccount = 'To Account';
+
+  static final String logout = 'Logout';
 }
