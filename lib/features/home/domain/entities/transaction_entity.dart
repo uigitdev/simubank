@@ -1,4 +1,6 @@
-class TransactionEntity {
+import 'package:simubank/simubank.dart';
+
+class TransactionEntity extends Equatable {
   final int id;
   final int userId;
   final DateTime date;
@@ -10,7 +12,7 @@ class TransactionEntity {
   final String toAccount;
   final String category;
 
-  TransactionEntity({
+  const TransactionEntity({
     required this.id,
     required this.userId,
     required this.date,
@@ -22,4 +24,7 @@ class TransactionEntity {
     required this.toAccount,
     required this.category,
   });
+
+  @override
+  List<Object?> get props => [id, merchant];
 }
