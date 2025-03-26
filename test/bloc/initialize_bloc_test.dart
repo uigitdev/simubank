@@ -25,7 +25,7 @@ void main() {
   group('InitializeBloc Tests', () {
     blocTest<InitializeBloc, InitializeState>(
       'Initial state is InitializeNone',
-      build: () => InitializeBloc(mockGetSessionUseCase),
+      build: () => initializeBloc,
       expect: () => [],
     );
 
