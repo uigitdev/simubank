@@ -100,3 +100,4 @@ export 'package:simubank/features/home/data/datasources/transactions/transaction
 export 'package:simubank/features/home/domain/usecase/delete_cached_transactions_use_case.dart';
 export 'package:sqflite/sqflite.dart';
 export 'package:simubank/features/home/data/datasources/transactions/transactions_database_helper.dart';
+export 'package:equatable/equatable.dart';

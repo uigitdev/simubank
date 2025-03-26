@@ -2,7 +2,7 @@ import 'package:simubank/simubank.dart';
 
 class TransactionModel extends TransactionEntity {
 
-  TransactionModel({
+  const TransactionModel({
     required super.id,
     required super.userId,
     required super.date,
