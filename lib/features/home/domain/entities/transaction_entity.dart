@@ -1,5 +1,6 @@
 import 'package:simubank/simubank.dart';
 
+@immutable
 class TransactionEntity extends Equatable {
   final int id;
   final int userId;

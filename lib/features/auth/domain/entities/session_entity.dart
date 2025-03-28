@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
+
+@immutable
 class SessionEntity {
   final String sessionId;
 
-  SessionEntity({required this.sessionId});
+  const SessionEntity({required this.sessionId});
 }

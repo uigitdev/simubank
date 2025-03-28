@@ -1,7 +1,8 @@
 import 'package:simubank/simubank.dart';
 
+@immutable
 class UserProfileDetailsModel extends UserProfileDetailsEntity {
-  UserProfileDetailsModel({
+  const UserProfileDetailsModel({
     required super.id,
     required super.email,
     required super.name,

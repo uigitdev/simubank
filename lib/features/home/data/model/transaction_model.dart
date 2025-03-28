@@ -1,5 +1,6 @@
 import 'package:simubank/simubank.dart';
 
+@immutable
 class TransactionModel extends TransactionEntity {
 
   const TransactionModel({

@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
+
+@immutable
 class ObfuscationKeyEntity {
   final String token;
 
-  ObfuscationKeyEntity(this.token);
+  const ObfuscationKeyEntity(this.token);
 }
