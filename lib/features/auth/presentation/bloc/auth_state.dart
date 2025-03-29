@@ -1,3 +1,5 @@
+import 'package:simubank/simubank.dart';
+
 sealed class AuthState {
   const AuthState();
 }
@@ -26,9 +28,12 @@ class AuthAuthenticationFailed extends AuthState {
 
 class AuthLogoutSuccess extends AuthState {}
 
-class AuthLogoutFailed extends AuthState {
+class AuthLogoutFailed extends AuthState implements ErrorState {
+  @override
   final String message;
+  @override
   final Object? error;
+  @override
   final StackTrace? stackTrace;
 
   AuthLogoutFailed({required this.message, this.error, this.stackTrace});

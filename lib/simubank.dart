@@ -102,3 +102,4 @@ export 'package:sqflite/sqflite.dart';
 export 'package:simubank/features/home/data/datasources/transactions/transactions_database_helper.dart';
 export 'package:equatable/equatable.dart';
 export 'package:simubank/core/observer/app_bloc_observer.dart';
+export 'package:simubank/core/entities/error_state.dart';
