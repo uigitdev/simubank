@@ -6,8 +6,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final GetObfuscationKeyUseCase _getObfuscationKeyUseCase;
   final RemoveSessionUseCase _removeSessionUseCase;
 
-  final _eventDispatcher = EventDispatcher();
-
   AuthBloc(
     this._authLoginUseCase,
     this._setSessionUseCase,
@@ -25,7 +23,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   // Emits either AuthLogoutSuccess or AuthLogoutFailed based on the result.
   void _onAuthLogout(AuthLogout event, Emitter<AuthState> emit) async {
     try {
-      _eventDispatcher.dispatchEvent(AuthLogout());
+      EventDispatcher().dispatchEvent(AuthLogout());
       final removeSessionIdStorageResult = await _removeSessionUseCase.call(NoData());
 
       if (removeSessionIdStorageResult) {
