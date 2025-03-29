@@ -1,21 +1,7 @@
 import 'package:simubank/simubank.dart';
 
-class InitializePage extends StatefulWidget {
+class InitializePage extends StatelessWidget {
   const InitializePage({super.key});
-
-  @override
-  State<InitializePage> createState() => _InitializePageState();
-}
-
-class _InitializePageState extends State<InitializePage> {
-  @override
-  void initState() {
-    ///Start initializing when build initialize is ended.
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<InitializeBloc>().add(InitializeStart());
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
