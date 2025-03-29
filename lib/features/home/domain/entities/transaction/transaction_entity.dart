@@ -1,16 +1,29 @@
-import 'package:simubank/simubank.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'transaction_entity.freezed.dart';
 
 @immutable
-class TransactionEntity extends Equatable {
+@freezed
+class TransactionEntity with _$TransactionEntity {
+  @override
   final int id;
+  @override
   final int userId;
+  @override
   final DateTime date;
+  @override
   final String merchant;
+  @override
   final int amount;
+  @override
   final String currency;
+  @override
   final String description;
+  @override
   final String fromAccount;
+  @override
   final String toAccount;
+  @override
   final String category;
 
   const TransactionEntity({
@@ -25,7 +38,4 @@ class TransactionEntity extends Equatable {
     required this.toAccount,
     required this.category,
   });
-
-  @override
-  List<Object?> get props => [id, merchant];
 }

@@ -1,10 +1,17 @@
-import 'package:flutter/cupertino.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'user_profile_details_entity.freezed.dart';
 
 @immutable
-class UserProfileDetailsEntity {
+@freezed
+class UserProfileDetailsEntity with _$UserProfileDetailsEntity {
+  @override
   final int id;
+  @override
   final String email;
+  @override
   final String name;
+  @override
   final String? profilePicture;
 
   const UserProfileDetailsEntity({

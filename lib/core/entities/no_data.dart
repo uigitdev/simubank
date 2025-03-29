@@ -1,8 +1,8 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class NoData extends Equatable {
-  const NoData();
+part 'no_data.freezed.dart';
 
-  @override
-  List<Object?> get props => [];
+@freezed
+class NoData with _$NoData {
+  const factory NoData() = _NoData;
 }
