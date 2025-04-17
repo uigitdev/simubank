@@ -18,9 +18,12 @@ class UserGetProfileDetailsSuccess extends UserState {
   List<Object> get props => [profile.id];
 }
 
-class UserGetProfileDetailsFailed extends UserState {
+class UserGetProfileDetailsFailed extends UserState implements ErrorState {
+  @override
   final String message;
+  @override
   final Object? error;
+  @override
   final StackTrace? stackTrace;
 
   const UserGetProfileDetailsFailed({

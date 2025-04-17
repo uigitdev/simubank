@@ -1,6 +1,6 @@
 import 'package:simubank/simubank.dart';
 
-class HomeTransactionFilterBox extends StatefulWidget {
+class HomeTransactionFilterBox extends StatelessWidget {
   final TextEditingController controller;
   final Function(String searchedText) onSearch;
 
@@ -10,12 +10,6 @@ class HomeTransactionFilterBox extends StatefulWidget {
     required this.onSearch,
   });
 
-  @override
-  State<HomeTransactionFilterBox> createState() =>
-      _HomeTransactionFilterBoxState();
-}
-
-class _HomeTransactionFilterBoxState extends State<HomeTransactionFilterBox> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -34,7 +28,7 @@ class _HomeTransactionFilterBoxState extends State<HomeTransactionFilterBox> {
             label: AppStrings.transactionSearch,
             child: AppInputField(
               key: Key(AppStrings.transactionSearch),
-              controller: widget.controller,
+              controller: controller,
               hint: AppStrings.transactionSearch,
               inputType: TextInputType.text,
               action: TextInputAction.next,
@@ -43,8 +37,8 @@ class _HomeTransactionFilterBoxState extends State<HomeTransactionFilterBox> {
               isEnabled: true,
               inputHeight: AppSizes(context).filterInputHeight,
               iconAsset: AppIcons.search,
-              onChanged: widget.onSearch,
-              onSubmitted: widget.onSearch,
+              onChanged: onSearch,
+              onSubmitted: onSearch,
             ),
           ),
         ),

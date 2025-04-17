@@ -1,6 +1,7 @@
 import 'package:simubank/simubank.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   setupLocators();
   runApp(const MyApp());
 }

@@ -17,7 +17,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     this._searchTransactionUseCase,
     this._deleteCachedTransactionsUseCase,
   ) : super(TransactionsNone()) {
-    on<TransactionsGetTransactions>(_onGetGetTransactions);
+    on<TransactionsGetTransactions>(_onGetTransactions);
     on<TransactionsSearchTransaction>(_onSearchTransactions);
     on<TransactionsLoadMore>(_onLoadMore);
     _observeEventDispatcher();
@@ -51,7 +51,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   /// Updates the state with the fetched transactions,
   /// and stores the results in _allTransactions.
   /// In case of an error, emits a failure state with the error message.
-  void _onGetGetTransactions(
+  void _onGetTransactions(
     TransactionsGetTransactions event,
     Emitter<TransactionsState> emit,
   ) async {

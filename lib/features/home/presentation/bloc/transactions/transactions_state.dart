@@ -1,6 +1,6 @@
 import 'package:simubank/simubank.dart';
 
-sealed class TransactionsState extends Equatable{
+sealed class TransactionsState extends Equatable {
   const TransactionsState();
 
   @override
@@ -18,8 +18,19 @@ class TransactionsLoadedTransactions extends TransactionsState {
   List<Object?> get props => transactions;
 }
 
-class TransactionLoadFailed extends TransactionsState {
+class TransactionLoadFailed extends TransactionsState implements ErrorState {
+  @override
   final String message;
 
-  const TransactionLoadFailed({required this.message});
+  @override
+  final Object? error;
+
+  @override
+  final StackTrace? stackTrace;
+
+  const TransactionLoadFailed({
+    required this.message,
+    this.error,
+    this.stackTrace,
+  });
 }
